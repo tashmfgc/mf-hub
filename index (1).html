@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MF Promo Hub — Musicians Friend</title>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{height:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#080909;color:#EDEAE4;-webkit-font-smoothing:antialiased}
+:root{
+  --bg:#080909;--surface:#0f1011;--card:#141516;--card2:#191b1c;--card3:#1e2022;
+  --border:#222426;--border2:#2c2f31;--border3:#363a3d;
+  --accent:#FF4500;--accent-dim:rgba(255,69,0,.1);
+  --amber:#F59E0B;--amber-dim:rgba(245,158,11,.1);
+  --green:#10B981;--green-dim:rgba(16,185,129,.1);
+  --blue:#3B82F6;--blue-dim:rgba(59,130,246,.1);
+  --violet:#8B5CF6;--violet-dim:rgba(139,92,246,.1);
+  --rose:#F43F5E;--rose-dim:rgba(244,63,94,.1);
+  --text:#EDEAE4;--muted:#6B7280;--dim:#3D4147;
+  --r:8px;--rl:12px;
+}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sb{width:228px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column}
+.sb-logo{padding:20px 18px 16px;border-bottom:1px solid var(--border)}
+.sb-mark{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:800;font-weight:800;font-size:16px;letter-spacing:-.4px;display:flex;align-items:center;gap:8px}
+.sb-pip{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);flex-shrink:0;animation:glow 3s ease-in-out infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 6px var(--accent)}50%{box-shadow:0 0 16px var(--accent)}}
+.sb-sub{font-size:9px;color:var(--muted);letter-spacing:1.8px;text-transform:uppercase;margin-top:2px}
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0}
+.sb-grp{margin-bottom:2px}
+.sb-grp-lbl{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);padding:8px 18px 3px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 18px;cursor:pointer;font-size:12.5px;color:var(--muted);transition:all .13s;border-left:2px solid transparent;user-select:none}
+.sb-item:hover{color:var(--text);background:rgba(255,255,255,.022)}
+.sb-item.active{color:var(--text);border-left-color:var(--accent);background:var(--accent-dim)}
+.sb-ico{font-size:13px;width:18px;text-align:center;flex-shrink:0}
+.sb-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:8.5px;font-weight:700;padding:1px 6px;border-radius:8px}
+.sb-live{margin-left:auto;font-size:8.5px;color:var(--green);background:var(--green-dim);padding:1px 6px;border-radius:4px;font-weight:700}
+.sb-user{padding:12px 18px;border-top:1px solid var(--border);display:flex;align-items:center;gap:9px}
+.sb-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#FF4500,#FF8C42);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.sb-un{font-size:12px;font-weight:500}
+.sb-ur{font-size:9.5px;color:var(--muted)}
+
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:54px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 22px;gap:10px;flex-shrink:0}
+.tb-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:800;font-size:14.5px;font-weight:700;letter-spacing:-.2px;flex:1}
+.tb-crumb{font-size:11.5px;color:var(--muted);cursor:pointer}
+.tb-crumb:hover{color:var(--text)}
+.tb-sep{color:var(--dim);margin:0 3px;font-size:11px}
+.page{flex:1;overflow-y:auto;padding:22px 26px}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:var(--r);border:none;cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:12px;font-weight:500;transition:all .14s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#d93c00;transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,69,0,.3)}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--text);border-color:var(--border2)}
+.btn-sm{padding:4px 10px;font-size:11px}
+.btn-xs{padding:3px 8px;font-size:10px}
+.btn-active{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,69,0,.25)}
+.btn-violet{background:var(--violet-dim);color:var(--violet);border:1px solid rgba(139,92,246,.25)}
+
+/* ── PANELS ── */
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.panel-hd{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-shrink:0}
+.panel-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:800;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.panel-bd{padding:16px}
+
+/* ── PILLS ── */
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;white-space:nowrap}
+.pill-live{background:var(--green-dim);color:var(--green)}
+.pill-draft{background:rgba(107,114,128,.12);color:var(--muted)}
+.pill-review{background:var(--amber-dim);color:var(--amber)}
+.pill-scheduled{background:var(--blue-dim);color:var(--blue)}
+.pill-complete{background:rgba(107,114,128,.1);color:#556}
+.pill-open{background:var(--accent-dim);color:var(--accent)}
+.pill-inprog{background:var(--violet-dim);color:var(--violet)}
+.pill-dot{width:4px;height:4px;border-radius:50%;background:currentColor}
+
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;gap:12px;margin-bottom:20px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:1fr 1fr}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;position:relative;overflow:hidden}
+
+.kpi-lbl{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:7px;font-weight:600}
+.kpi-val{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:800;font-size:26px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.kpi-sub{font-size:10.5px;color:var(--muted);margin-top:4px}
+.kpi-up{color:var(--green);font-weight:500}
+.kpi-dn{color:var(--rose);font-weight:500}
+
+/* ── LAYOUT ── */
+.g-main{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.g-wide{display:grid;grid-template-columns:3fr 1.2fr;gap:16px}
+.mb12{margin-bottom:12px}
+.mb16{margin-bottom:16px}
+.mb20{margin-bottom:20px}
+.tag{display:inline-flex;align-items:center;font-size:9.5px;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
+
+/* ── CAMPAIGN CARDS ── */
+.camp-row{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .13s}
+.camp-row:last-child{border-bottom:none}
+.camp-row:hover{background:rgba(255,255,255,.02)}
+.camp-stripe{width:3px;height:38px;border-radius:2px;flex-shrink:0}
+.camp-info{flex:1;min-width:0}
+.camp-name{font-size:13px;font-weight:500;margin-bottom:2px}
+.camp-meta{font-size:11px;color:var(--muted)}
+
+/* ── CALENDAR ── */
+.cal-grid-hdr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:8px 8px 0}
+.cal-day-lbl{font-size:9px;text-align:center;color:var(--dim);text-transform:uppercase;letter-spacing:1px;padding-bottom:6px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:0 8px 8px}
+.cal-cell{min-height:82px;background:var(--card2);border:1px solid var(--border);border-radius:5px;padding:5px 6px;cursor:pointer;transition:border .13s;overflow:hidden}
+.cal-cell:hover{border-color:var(--border2)}
+.cal-cell.today{border-color:var(--accent)!important;background:var(--accent-dim)}
+.cal-cell.other{opacity:.4}
+.cal-dn{font-size:10.5px;font-weight:600;color:var(--muted);margin-bottom:3px}
+.cal-cell.today .cal-dn{color:var(--accent)}
+.cal-chip{font-size:9px;font-weight:500;padding:2px 5px;border-radius:2px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:2px solid currentColor;cursor:pointer}
+
+/* ── EMAIL TABLE ── */
+.ec-table{width:100%;border-collapse:collapse}
+.ec-table th{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--dim);padding:9px 12px;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap;position:sticky;top:0;background:var(--card);z-index:1}
+.ec-table td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:top}
+.ec-table tr:last-child td{border-bottom:none}
+.ec-table tr:hover td{background:rgba(255,255,255,.015);cursor:pointer}
+.ec-badge{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:600;padding:2px 8px;border-radius:3px}
+.ec-ded{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,69,0,.2)}
+.ec-feat{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
+.ec-trig{background:var(--violet-dim);color:var(--violet);border:1px solid rgba(139,92,246,.2)}
+.ec-good{color:var(--green);font-weight:500}
+.ec-avg{color:var(--amber);font-weight:500}
+.ec-blank{color:var(--dim)}
+
+/* ── TICKETS ── */
+.tk-board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:start}
+.tk-col-hd{display:flex;align-items:center;justify-content:space-between;padding:0 2px 8px}
+.tk-col-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.tk-col-ct{width:18px;height:18px;border-radius:50%;background:var(--border);font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.tk-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:11px 12px;margin-bottom:7px;cursor:pointer;transition:all .14s;position:relative;overflow:hidden}
+.tk-card::before{content:'';position:absolute;top:0;left:0;width:3px;bottom:0;background:var(--tc,var(--dim))}
+.tk-card:hover{border-color:var(--border2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.tk-id{font-size:9px;color:var(--dim);font-weight:700;letter-spacing:.5px;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.tk-title{font-size:12px;font-weight:500;line-height:1.4;margin-bottom:7px}
+.tk-camp{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--muted);margin-bottom:5px}
+.tk-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.tk-foot{display:flex;align-items:center;justify-content:space-between;margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
+.tk-av{width:17px;height:17px;border-radius:50%;font-size:7.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tk-assignee{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)}
+.tk-due{font-size:9.5px}
+.due-late{color:var(--rose)}
+.due-soon{color:var(--amber)}
+.due-ok{color:var(--muted)}
+
+/* ── TASKS ── */
+.task-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.task-item:last-child{border-bottom:none}
+.task-check{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;cursor:pointer;transition:all .13s}
+.task-check.done{background:var(--green);border-color:var(--green);color:#fff}
+.task-txt{flex:1;font-size:12.5px}
+.task-txt.done{color:var(--dim);text-decoration:line-through}
+.task-owner{font-size:9.5px;color:var(--muted);background:var(--card2);border:1px solid var(--border);padding:2px 7px;border-radius:8px}
+.task-due{font-size:9.5px}
+
+/* ── AUTOMATION ── */
+.rule-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rl);padding:14px 16px;margin-bottom:9px;display:flex;align-items:flex-start;gap:12px}
+.rule-toggle{width:34px;height:19px;border-radius:9px;flex-shrink:0;cursor:pointer;position:relative;transition:background .18s;margin-top:2px}
+.rule-toggle.on{background:var(--green)}
+.rule-toggle.off{background:var(--border2)}
+.rule-pip{width:13px;height:13px;border-radius:50%;background:#fff;position:absolute;top:3px;transition:left .18s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.rule-toggle.on .rule-pip{left:18px}
+.rule-toggle.off .rule-pip{left:3px}
+.rule-title{font-size:13px;font-weight:500;margin-bottom:3px}
+.rule-desc{font-size:11.5px;color:var(--muted);line-height:1.5}
+.rule-trigger{display:inline-flex;font-size:10px;padding:2px 8px;border-radius:3px;background:var(--blue-dim);color:var(--blue);margin-right:5px;margin-top:5px}
+.rule-action{display:inline-flex;font-size:10px;padding:2px 8px;border-radius:3px;background:var(--violet-dim);color:var(--violet);margin-top:5px}
+
+/* ── PERFORMANCE BARS ── */
+.perf-row{margin-bottom:11px}
+.perf-hdr{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;color:var(--muted)}
+.perf-hdr span:last-child{color:var(--text);font-weight:500}
+.perf-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.perf-fill{height:100%;border-radius:2px}
+
+/* ── AI CHAT ── */
+.chat-wrap{display:flex;flex-direction:column;height:520px}
+.chat-msgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding-bottom:14px}
+.chat-bubble{max-width:84%;padding:11px 14px;border-radius:10px;font-size:12.5px;line-height:1.55}
+.chat-bubble.ai{background:var(--card2);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:3px}
+.chat-bubble.user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.chat-sender{font-size:9px;color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.chat-input-row{display:flex;gap:7px;padding-top:12px;border-top:1px solid var(--border)}
+.chat-input{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:12.5px;outline:none;transition:border .14s}
+.chat-input:focus{border-color:var(--accent)}
+.chat-input::placeholder{color:var(--dim)}
+.chat-send{background:var(--accent);border:none;border-radius:var(--r);width:38px;height:38px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:#fff;transition:all .14s}
+.chat-send:hover{background:#d93c00}
+
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:var(--rl);width:100%;max-width:700px;max-height:88vh;overflow-y:auto;display:flex;flex-direction:column}
+.modal-hd{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;position:sticky;top:0;background:var(--card);z-index:1}
+.modal-hd-body{flex:1}
+.modal-id{font-size:9.5px;color:var(--muted);font-weight:600;letter-spacing:.5px;margin-bottom:3px}
+.modal-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:800;font-size:17px;font-weight:800;letter-spacing:-.3px}
+.modal-close{background:var(--card2);border:1px solid var(--border);border-radius:5px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:14px;flex-shrink:0;transition:color .13s}
+.modal-close:hover{color:var(--text)}
+.modal-bd{padding:20px 22px}
+.field-row{display:grid;gap:9px;margin-bottom:12px}
+.fr2{grid-template-columns:1fr 1fr}
+.fr3{grid-template-columns:1fr 1fr 1fr}
+.mfield{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px}
+.mfield-lbl{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:4px;font-weight:600}
+.mfield-val{font-size:12.5px;color:var(--text);line-height:1.4}
+.mfield-val.mt{color:var(--muted);font-size:12px}
+.tl{position:relative;padding-left:18px}
+.tl::before{content:'';position:absolute;left:6px;top:5px;bottom:5px;width:1px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-dot{position:absolute;left:-18px;top:3px;width:12px;height:12px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:8px}
+.tl-dot.done{background:var(--green);border-color:var(--green);color:#fff}
+.tl-dot.active{background:var(--accent);border-color:var(--accent);box-shadow:0 0 7px var(--accent)}
+.tl-lbl{font-size:12px;font-weight:500}
+.tl-date{font-size:10.5px;color:var(--muted);margin-top:1px}
+
+/* ── SYNC BANNER ── */
+.sync-banner{background:linear-gradient(90deg,#0a130a,#0c1510);border:1px solid rgba(16,185,129,.18);border-radius:var(--rl);padding:12px 16px;display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);flex-shrink:0;animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ── AI INSIGHT PANEL ── */
+.ai-panel{background:linear-gradient(135deg,#0c0e1a,#0f1122);border:1px solid rgba(139,92,246,.18);border-radius:var(--rl);overflow:hidden}
+.ai-panel .panel-hd{border-bottom-color:rgba(139,92,246,.15)}
+.ai-ins{display:flex;gap:10px;padding-bottom:11px;margin-bottom:11px;border-bottom:1px solid rgba(139,92,246,.1)}
+.ai-ins:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.ai-ins-icon{font-size:17px;flex-shrink:0;margin-top:1px}
+.ai-ins-title{font-size:12px;font-weight:500;margin-bottom:2px}
+.ai-ins-text{font-size:11px;color:var(--muted);line-height:1.5}
+.ai-cta{font-size:10.5px;color:#818cf8;cursor:pointer;margin-top:3px}
+
+/* ── TICKET FORM TABS ── */
+.tab-nav{display:flex;border-bottom:1px solid var(--border);padding-left:22px;background:var(--surface);flex-shrink:0}
+.tab{padding:9px 16px;font-size:12.5px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all .13s;margin-bottom:-1px}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--text);border-bottom-color:var(--accent);font-weight:500}
+.form-section-hdr{display:flex;align-items:center;gap:9px;margin-bottom:12px;margin-top:20px}
+.form-section-hdr:first-child{margin-top:0}
+.form-sec-icon{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.form-sec-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:800;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px}
+.form-divider{flex:1;height:1px;background:var(--border)}
+.ffield{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;transition:border .14s}
+.ffield:focus-within{border-color:var(--border3)}
+.ffield-lbl{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:4px;font-weight:600}
+.ffield-input{background:transparent;border:none;outline:none;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:12.5px;width:100%;resize:none;line-height:1.5}
+.ffield-input::placeholder{color:var(--dim)}
+.ffield-select{background:transparent;border:none;outline:none;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:12.5px;width:100%;cursor:pointer}
+.ffield-select option{background:var(--card2)}
+.tchip{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:3px 9px;border-radius:4px;border:1px solid var(--border2);color:var(--muted);background:var(--card3);cursor:pointer;transition:all .12s;margin:2px}
+.tchip:hover{border-color:var(--border3);color:var(--text)}
+.tchip.on{background:var(--accent-dim);color:var(--accent);border-color:rgba(255,69,0,.3)}
+.tchip.on-blue{background:var(--blue-dim);color:var(--blue);border-color:rgba(59,130,246,.3)}
+.tchip.on-green{background:var(--green-dim);color:var(--green);border-color:rgba(16,185,129,.3)}
+.placement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.placement-opt{border:1px solid var(--border);border-radius:var(--r);padding:8px;cursor:pointer;transition:all .13s;text-align:center}
+.placement-opt:hover{border-color:var(--border2)}
+.placement-opt.on{border-color:var(--accent);background:var(--accent-dim)}
+.placement-opt-ico{font-size:15px;margin-bottom:2px}
+.placement-opt-lbl{font-size:9.5px;color:var(--muted)}
+.placement-opt.on .placement-opt-lbl{color:var(--accent)}
+.spec-table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.spec-table th{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--dim);padding:6px 9px;border-bottom:1px solid var(--border);text-align:left}
+.spec-table td{padding:6px 9px;border-bottom:1px solid var(--border);font-size:11.5px;color:var(--muted);vertical-align:middle}
+.spec-table tr:last-child td{border-bottom:none}
+.spec-input{background:transparent;border:none;outline:none;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:11.5px;width:100%}
+.spec-input::placeholder{color:var(--dim)}
+.spec-check{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:8px;transition:all .12s}
+.spec-check.done{background:var(--green);border-color:var(--green);color:#fff}
+.upload-zone{border:2px dashed var(--border2);border-radius:var(--r);padding:20px;text-align:center;cursor:pointer;transition:all .14s;background:var(--card2)}
+.upload-zone:hover{border-color:var(--accent);background:var(--accent-dim)}
+.upload-file{display:flex;align-items:center;gap:9px;background:var(--card3);border:1px solid var(--border);border-radius:var(--r);padding:7px 10px;margin-top:6px}
+.status-track{display:flex;flex-direction:column;gap:0}
+.status-step{display:flex;align-items:flex-start;gap:9px;padding-bottom:12px;position:relative}
+.status-step:last-child{padding-bottom:0}
+.status-step::before{content:'';position:absolute;left:8px;top:16px;bottom:0;width:1px;background:var(--border)}
+.status-step:last-child::before{display:none}
+.status-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;z-index:1}
+.status-dot.done{background:var(--green);border-color:var(--green);color:#fff}
+.status-dot.active{background:var(--accent);border-color:var(--accent);box-shadow:0 0 7px var(--accent)}
+.status-step-lbl{font-size:11.5px;padding-top:0}
+.status-step-date{font-size:10px;color:var(--muted);margin-top:1px}
+
+</style>
+</head>
+<body>
+<div id="root"><div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#080909;color:#666;font-family:sans-serif;font-size:13px">Loading MF Promo Hub…</div></div>
+
+<!-- React 18 development build - compatible with Babel standalone -->
+<script src="https://unpkg.com/react@18.2.0/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.23.2/babel.min.js"></script>
+
+<script type="text/babel">
+const { useState, useMemo, useEffect, useRef } = React;
+
+/* ══════════════════════════════════════════
+   DATA
+══════════════════════════════════════════ */
+const CAMPAIGNS = [
+  { id:1, name:"Spring Guitar Sale", status:"scheduled", color:"#FF4500", start:"Mar 15", end:"Apr 2", owner:"Jamie R.", budget:"$42,000", target:"$850,000", channels:["Email","Paid Social","Display","Affiliate"], goal:"Drive guitar category revenue — target $850K. Focus on acoustic & electric bundles.", offer:"Up to 30% off select guitars + free shipping", audience:"Guitar purchasers (L12M), Lookalike — Guitar Buyers, Age 22–48", tags:["Guitar","Spring","Bundle"],
+    timeline:[{l:"Brief Approved",d:"Mar 5",s:"done"},{l:"Creative Assets Due",d:"Mar 12",s:"done"},{l:"Email Scheduled",d:"Mar 14",s:"active"},{l:"Campaign Launch",d:"Mar 15",s:"pending"},{l:"Campaign End",d:"Apr 2",s:"pending"}],
+    assets:[{size:"Email Hero",name:"Spring Guitar Hero",done:true},{size:"728×90",name:"Leaderboard",done:true},{size:"300×250",name:"Rectangle",done:true},{size:"Instagram Story",name:"IG Story",done:false},{size:"300×600",name:"Half Page",done:false}]},
+  { id:2, name:"NAMM Gear Drop", status:"draft", color:"#F59E0B", start:"Mar 22", end:"Mar 28", owner:"Casey M.", budget:"$18,500", target:"$420,000", channels:["Email","Display"], goal:"Capitalize on NAMM buzz — showcase new product arrivals.", offer:"First-to-market new arrivals — exclusivity angle", audience:"Gear Enthusiasts, Pro Musicians, Newsletter subscribers", tags:["NAMM","New Arrivals"],
+    timeline:[{l:"Brief Created",d:"Mar 8",s:"done"},{l:"Product List Final",d:"Mar 14",s:"active"},{l:"Assets Due",d:"Mar 18",s:"pending"},{l:"Campaign Launch",d:"Mar 22",s:"pending"},{l:"Campaign End",d:"Mar 28",s:"pending"}],
+    assets:[{size:"Email Hero",name:"NAMM Email Hero",done:false},{size:"300×250",name:"NAMM Rectangle",done:false},{size:"728×90",name:"NAMM Leaderboard",done:false}]},
+  { id:3, name:"Drum Kit Blowout", status:"live", color:"#10B981", start:"Mar 5", end:"Mar 14", owner:"Jordan T.", budget:"$28,000", target:"$540,000", channels:["Email","SMS","Paid Social","Affiliate"], goal:"Clear drum kit inventory — 200+ units. Aggressive discount strategy.", offer:"Up to 40% off drum kits + free hardware pack $499+", audience:"Drummers, SMS opt-ins, Clearance shoppers", tags:["Drums","Clearance","SMS"],
+    timeline:[{l:"Brief Approved",d:"Mar 1",s:"done"},{l:"Assets Delivered",d:"Mar 4",s:"done"},{l:"Campaign Live",d:"Mar 5",s:"done"},{l:"Mid-Flight Check",d:"Mar 9",s:"done"},{l:"Campaign End",d:"Mar 14",s:"active"}],
+    assets:[{size:"Email Hero",name:"Drum Kit Hero",done:true},{size:"SMS Visual",name:"SMS Image",done:true},{size:"Instagram",name:"IG Story + Feed",done:true},{size:"300×250",name:"Rectangle",done:true}]},
+  { id:4, name:"Easter Weekend Deals", status:"review", color:"#3B82F6", start:"Apr 18", end:"Apr 21", owner:"Alex K.", budget:"$35,000", target:"$720,000", channels:["Email","Paid Social"], goal:"Holiday weekend revenue push across all categories.", offer:"Sitewide 20% off + extended returns through May", audience:"Full house list + paid prospecting — broad category", tags:["Holiday","Sitewide","Spring"],
+    timeline:[{l:"Brief Created",d:"Mar 10",s:"done"},{l:"Director Approval",d:"Mar 15",s:"active"},{l:"Assets Due",d:"Apr 4",s:"pending"},{l:"Email Scheduled",d:"Apr 17",s:"pending"},{l:"Campaign Launch",d:"Apr 18",s:"pending"}],
+    assets:[{size:"Email Hero",name:"Easter Email Series (3)",done:false},{size:"300×250",name:"Easter Rectangle",done:false},{size:"Instagram",name:"Easter IG Story",done:false}]},
+];
+
+const EMAIL_SENDS = [
+  {id:"e01",date:"Feb 22",type:"dedicated",subject:"PM: Extra 15% Off Used Price Drops",subLabel:"Shop by SKU CAT",audience:"7am Open/Click",segment:"Full List",campaign:"Acoustic Sale",send_time:"7am",or:"28.4%",ctr:"4.2%",notes:"Einstein Recs, Accessory BOGO sub"},
+  {id:"e02",date:"Feb 22",type:"feature",subject:"NatP: Fender Promo (thru 5/13)",subLabel:"30% off Fender Vintera II",audience:"Full list",segment:"Full List",campaign:"NAMM Gear Drop",send_time:"7am",or:"—",ctr:"—",notes:"6 products 3x2 Einstein"},
+  {id:"e03",date:"Feb 23",type:"dedicated",subject:"PM: Whats New — Gibson L-1 Anniversary",subLabel:"Single coded PIC on top",audience:"720D Resp",segment:"Gear Enthusiasts",campaign:"NAMM Gear Drop",send_time:"7am",or:"31.1%",ctr:"5.8%",notes:"Drums: Ludwig Classic"},
+  {id:"e04",date:"Feb 23",type:"dedicated",subject:"PM: Acoustic Sale",subLabel:"Shop by Body Type",audience:"180D @ 11am",segment:"Acoustic Buyers",campaign:"Acoustic Sale",send_time:"11am",or:"33.2%",ctr:"6.1%",notes:"Turn H1 CTA w/ color matched BG"},
+  {id:"e05",date:"Feb 24",type:"dedicated",subject:"PM: Weekly Deals For You",subLabel:"TWFD NEW Standard Hero — top 4 Deal",audience:"720D Resp",segment:"Full List",campaign:"Acoustic Sale",send_time:"7am",or:"26.8%",ctr:"3.9%",notes:"New design SL"},
+  {id:"e06",date:"Feb 25",type:"dedicated",subject:"PM: Accessory BOGO",subLabel:"SL: BOGO 50% Off: Stock Up on Essentials",audience:"180D Resp",segment:"Accessory Buyers",campaign:"Acoustic Sale",send_time:"7am",or:"35.6%",ctr:"7.2%",notes:"CTA Cats: All Top Selling Types"},
+  {id:"e07",date:"Feb 25",type:"dedicated",subject:"PM: Financing (A/B Detail Test 1 of 3)",subLabel:"Upgrade with Up to 48M Financing",audience:"90D @ 11am",segment:"High Value Browsers",campaign:"NAMM Gear Drop",send_time:"11am",or:"22.1%",ctr:"3.4%",notes:"A/B Test — Points VS Financing"},
+  {id:"e08",date:"Feb 26",type:"dedicated",subject:"PM: Price Drop Alert — NTLPRMO",subLabel:"2026 Electro-Voice ZLX/EVOLVE 30",audience:"180D Resp",segment:"PA/Live Sound",campaign:"NAMM Gear Drop",send_time:"7am",or:"30.5%",ctr:"5.1%",notes:"TCH aud."},
+  {id:"e09",date:"Feb 26",type:"dedicated",subject:"PM: Open Box",subLabel:"Stacking value props",audience:"Full List",segment:"Bargain Shoppers",campaign:"Acoustic Sale",send_time:"7am",or:"24.4%",ctr:"3.8%",notes:"SKU cats — redesign drop"},
+  {id:"e10",date:"Feb 27",type:"dedicated",subject:"PM: Extra 15% Off Used Price Drops",subLabel:"Limited Offer: Extra 15 off Used Gear",audience:"720D Resp",segment:"Used Gear Buyers",campaign:"Acoustic Sale",send_time:"7am",or:"31.8%",ctr:"5.3%",notes:"Einstein 3x2 UGPD results"},
+  {id:"e11",date:"Feb 28",type:"dedicated",subject:"PM: Winback Launch 2/28–3/7",subLabel:"Dynamic rec 1: BOGO 50%/Acoustic/Casio",audience:"365D Resp",segment:"Lapsed Customers",campaign:"Winback Launch",send_time:"7am",or:"18.2%",ctr:"2.9%",notes:"Fender National Promo"},
+  {id:"e12",date:"Feb 28",type:"dedicated",subject:"PM: Accessory BOGO Sale Ends Tomorrow",subLabel:"Buy 1 Get 1 50% Off — Deal Ends Tomorrow",audience:"365D Resp",segment:"Accessory Buyers",campaign:"Acoustic Sale",send_time:"7am",or:"36.1%",ctr:"8.4%",notes:"CTA Cats All Top Selling Types"},
+  {id:"e13",date:"Mar 5",type:"dedicated",subject:"PM: Drum Kit Blowout — Up to 40% Off",subLabel:"Free hardware pack with $499+ orders",audience:"Full List",segment:"Drummers",campaign:"Drum Kit Blowout",send_time:"7am",or:"29.7%",ctr:"5.6%",notes:"Launch send"},
+  {id:"e14",date:"Mar 7",type:"dedicated",subject:"PM: Drums — Don't Miss These Deals",subLabel:"Ending soon — up to 40% off kits",audience:"Non-openers",segment:"Drummers",campaign:"Drum Kit Blowout",send_time:"7am",or:"14.3%",ctr:"2.1%",notes:"Resend to non-openers"},
+  {id:"e15",date:"Mar 9",type:"feature",subject:"Weekly Deals — Featured: Drum Clearance",subLabel:"Shop this week's top picks",audience:"Full List",segment:"Full List",campaign:"Drum Kit Blowout",send_time:"7am",or:"—",ctr:"—",notes:"Featured in weekly digest"},
+  {id:"e16",date:"Mar 11",type:"trigger",subject:"You left drums in your cart",subLabel:"Complete your order — limited stock",audience:"Cart Abandoners",segment:"Drum Browsers",campaign:"Drum Kit Blowout",send_time:"Auto",or:"41.2%",ctr:"12.8%",notes:"Cart abandon trigger"},
+  {id:"e17",date:"Mar 15",type:"dedicated",subject:"PM: Spring Guitar Sale — Up to 30% Off",subLabel:"Shop acoustic, electric & bass guitars",audience:"Full List",segment:"Guitar Buyers",campaign:"Spring Guitar Sale",send_time:"7am",or:"—",ctr:"—",notes:"Scheduled"},
+  {id:"e18",date:"Mar 18",type:"dedicated",subject:"PM: Spring Guitar — Last Chance Bundles",subLabel:"Bundle & save — limited time",audience:"Non-openers",segment:"Guitar Buyers",campaign:"Spring Guitar Sale",send_time:"7am",or:"—",ctr:"—",notes:"Scheduled"},
+  {id:"e19",date:"Mar 22",type:"dedicated",subject:"PM: NAMM Gear Drop — New Arrivals",subLabel:"First look at the hottest new gear",audience:"Full List",segment:"Gear Enthusiasts",campaign:"NAMM Gear Drop",send_time:"7am",or:"—",ctr:"—",notes:"Draft"},
+];
+
+const TICKETS_DATA = [
+  {id:"TK-1044",col:"In Review",title:"Spring Guitar Sale — Social Assets",type:"Design",camp:"Spring Guitar Sale",campColor:"#FF4500",priority:"High",assignee:"KL",assigneeColor:"#3B82F6",due:"Mar 13",dueStatus:"late",assets:[{size:"IG Story 1080×1920",name:"Guitar Story",done:true},{size:"IG Feed 1080×1080",name:"Guitar Feed",done:true},{size:"TikTok 1080×1920",name:"Guitar TikTok",done:false}],requestor:"Jamie R.",desc:"Instagram Story, Feed, and TikTok assets for Spring Guitar Sale."},
+  {id:"TK-1045",col:"Open",title:"Spring Guitar Sale — 300×600 Banner",type:"Design",camp:"Spring Guitar Sale",campColor:"#FF4500",priority:"High",assignee:"—",assigneeColor:"#6B7280",due:"Mar 13",dueStatus:"late",assets:[{size:"300×600",name:"Guitar Half Page",done:false}],requestor:"Jamie R.",desc:"Half page banner for programmatic display."},
+  {id:"TK-1046",col:"Open",title:"NAMM Gear Drop — Full Display Set",type:"Design",camp:"NAMM Gear Drop",campColor:"#F59E0B",priority:"Medium",assignee:"—",assigneeColor:"#6B7280",due:"Mar 18",dueStatus:"ok",assets:[{size:"300×250",name:"NAMM Rectangle",done:false},{size:"728×90",name:"NAMM Leaderboard",done:false},{size:"300×600",name:"NAMM Half Page",done:false}],requestor:"Casey M.",desc:"Full IAB display set for NAMM Gear Drop."},
+  {id:"TK-1047",col:"Open",title:"Easter Weekend — Landing Page",type:"Landing Page",camp:"Easter Weekend Deals",campColor:"#3B82F6",priority:"Medium",assignee:"—",assigneeColor:"#6B7280",due:"Apr 4",dueStatus:"ok",assets:[{size:"LP Hero Desktop",name:"Easter Hero Desktop",done:false},{size:"LP Hero Mobile",name:"Easter Hero Mobile",done:false}],requestor:"Alex K.",desc:"Sitewide 20% off landing page. Needs hero, category grid, countdown timer."},
+  {id:"TK-1048",col:"In Progress",title:"Drum Kit Blowout — Email Hero",type:"Design",camp:"Drum Kit Blowout",campColor:"#10B981",priority:"Urgent",assignee:"MR",assigneeColor:"#10B981",due:"Done",dueStatus:"ok",assets:[{size:"Email 600×300",name:"Drum Hero Desktop",done:true},{size:"Mobile 375×200",name:"Drum Hero Mobile",done:true}],requestor:"Jordan T.",desc:"Email hero banner for Drum Kit Blowout."},
+  {id:"TK-1049",col:"Complete",title:"Winback Launch — Email Series",type:"Design",camp:"Winback Launch",campColor:"#8B5CF6",priority:"High",assignee:"KL",assigneeColor:"#3B82F6",due:"Feb 27",dueStatus:"ok",assets:[{size:"Email Hero",name:"Winback Email 1",done:true},{size:"Email Hero",name:"Winback Email 2",done:true},{size:"Email Hero",name:"Winback Email 3",done:true}],requestor:"Jamie R.",desc:"3-email drip series for Winback campaign."},
+];
+
+const TASKS_DATA = [
+  {id:1,text:"Finalize Spring Guitar email copy",campaign:"Spring Guitar Sale",owner:"Marketing",ownerColor:"#FF4500",due:"Mar 13",dueStatus:"late",done:false,role:"Marketing"},
+  {id:2,text:"Submit 300×600 banner to designer",campaign:"Spring Guitar Sale",owner:"Marketing",ownerColor:"#FF4500",due:"Mar 12",dueStatus:"late",done:false,role:"Marketing"},
+  {id:3,text:"Approve NAMM product list",campaign:"NAMM Gear Drop",owner:"Director",ownerColor:"#8B5CF6",due:"Mar 14",dueStatus:"soon",done:false,role:"Director"},
+  {id:4,text:"Update homepage hero — Drum Kit",campaign:"Drum Kit Blowout",owner:"Web",ownerColor:"#3B82F6",due:"Done",dueStatus:"done",done:true,role:"Web"},
+  {id:5,text:"Mid-flight check — Drum Kit Blowout",campaign:"Drum Kit Blowout",owner:"Analytics",ownerColor:"#10B981",due:"Mar 12",dueStatus:"done",done:true,role:"Analytics"},
+  {id:6,text:"Pull Feb promo performance report",campaign:"General",owner:"Analytics",ownerColor:"#10B981",due:"Mar 14",dueStatus:"soon",done:false,role:"Analytics"},
+  {id:7,text:"Director sign-off: Easter brief",campaign:"Easter Weekend Deals",owner:"Director",ownerColor:"#8B5CF6",due:"Mar 15",dueStatus:"ok",done:false,role:"Director"},
+  {id:8,text:"Verify affiliate tracking — Spring Guitar",campaign:"Spring Guitar Sale",owner:"Web",ownerColor:"#3B82F6",due:"Mar 14",dueStatus:"soon",done:false,role:"Web"},
+];
+
+const RULES_DATA = [
+  {title:"Campaign Launch → Auto-create design ticket",desc:"When a campaign moves to Scheduled, generate a design ticket with standard asset specs and assign to the design queue.",trigger:"Campaign → Scheduled",action:"Create Design Ticket",on:true},
+  {title:"Campaign ends → Generate performance summary",desc:"48 hours after campaign end date, generate an AI performance summary and archive it to the campaign record.",trigger:"Campaign End +48h",action:"AI Performance Report",on:true},
+  {title:"Calendar gap detected → Alert + suggest promos",desc:"If a 7+ day gap with no active promotions is detected, notify the marketing team and suggest 3 AI promo ideas.",trigger:"Gap > 7 Days",action:"Notify + AI Suggest",on:false},
+  {title:"Email open rate < 20% → Subject line alert",desc:"If a sent email's open rate falls below 20% within 4 hours of send, alert the team and trigger AI subject line revisions.",trigger:"Email OR < 20%",action:"Alert + AI Copy Tool",on:true},
+  {title:"New brief submitted → Auto-assign tasks",desc:"When a campaign brief is marked Complete, auto-generate and assign standard pre-launch tasks to relevant roles.",trigger:"Brief → Complete",action:"Create & Assign Tasks",on:false},
+  {title:"All assets approved → Notify campaign manager",desc:"When all design ticket assets for a campaign are marked complete, send a notification to the campaign owner.",trigger:"All Assets ✅",action:"Notify Owner",on:true},
+];
+
+const CHAT_INIT = [
+  {role:"ai",text:"Hi! I'm your Promo Intelligence assistant. I can help you build campaign briefs, identify calendar gaps, generate copy variations, analyze past performance, or auto-create designer tickets. What would you like to do?"},
+];
+
+const PERF_DATA = [
+  {camp:"Drum Kit Blowout",or:"29.7%",ctr:"5.6%",rev:"$312K",vs:91,color:"#10B981"},
+  {camp:"Acoustic Sale",or:"30.1%",ctr:"5.1%",rev:"$284K",vs:78,color:"#F59E0B"},
+  {camp:"Winback Launch",or:"18.2%",ctr:"2.9%",rev:"$96K",vs:45,color:"#8B5CF6"},
+  {camp:"Spring Guitar Sale",or:"—",ctr:"—",rev:"—",vs:0,color:"#FF4500"},
+];
+
+/* ── HELPERS ── */
+const statusCls = s => ({live:"pill-live",draft:"pill-draft",review:"pill-review",scheduled:"pill-scheduled",complete:"pill-complete","in review":"pill-review","in progress":"pill-inprog",open:"pill-open"}[s?.toLowerCase()]||"pill-draft");
+const statusLbl = s => ({live:"● Live",draft:"Draft",review:"In Review",scheduled:"Scheduled",complete:"Complete"}[s]||s);
+const campColor = name => CAMPAIGNS.find(c=>c.name===name)?.color||"#6B7280";
+const priorityColor = p => ({Urgent:"#F43F5E",High:"#F59E0B",Medium:"#3B82F6",Low:"#6B7280"}[p]||"#6B7280");
+
+/* ══════════════════════════════════════════
+   CALENDAR DATA
+══════════════════════════════════════════ */
+const buildCal = () => {
+  const promoMap = {5:["Drum Kit Blowout"],6:["Drum Kit Blowout"],7:["Drum Kit Blowout"],8:["Drum Kit Blowout"],9:["Drum Kit Blowout"],10:["Drum Kit Blowout"],11:["Drum Kit Blowout"],12:["Drum Kit Blowout"],13:["Drum Kit Blowout"],14:["Drum Kit Blowout"],15:["Spring Guitar Sale"],16:["Spring Guitar Sale"],17:["Spring Guitar Sale"],18:["Spring Guitar Sale"],19:["Spring Guitar Sale"],20:["Spring Guitar Sale"],21:["Spring Guitar Sale"],22:["Spring Guitar Sale","NAMM Gear Drop"],23:["Spring Guitar Sale","NAMM Gear Drop"],24:["Spring Guitar Sale","NAMM Gear Drop"],25:["Spring Guitar Sale","NAMM Gear Drop"],26:["Spring Guitar Sale","NAMM Gear Drop"],27:["Spring Guitar Sale","NAMM Gear Drop"],28:["Spring Guitar Sale","NAMM Gear Drop"],29:["Spring Guitar Sale"],30:["Spring Guitar Sale"],31:["Spring Guitar Sale"]};
+  const colorMap = {"Spring Guitar Sale":"#FF4500","NAMM Gear Drop":"#F59E0B","Drum Kit Blowout":"#10B981","Easter Weekend Deals":"#3B82F6"};
+  const days = [];
+  for(let d=1;d<=31;d++) days.push({d,today:d===11,other:false,promos:(promoMap[d]||[]).map(n=>({name:n,color:colorMap[n]}))});
+  while(days.length<35) days.push({d:days.length-30,today:false,other:true,promos:[]});
+  return days;
+};
+const CAL = buildCal();
+
+/* ══════════════════════════════════════════
+   PAGE COMPONENTS
+══════════════════════════════════════════ */
+
+/* ── DASHBOARD ── */
+function Dashboard({setNav,setCamp}){
+  return(
+    <>
+      <div className="kpi-grid g4 mb20">
+        {[{l:"Active Campaigns",v:"4",s:"2 launching this month",c:"#FF4500"},{l:"Open Tasks",v:"6",s:<span className="kpi-dn">3 overdue</span>,c:"#F59E0B"},{l:"Tickets Open",v:"3",s:"2 design · 1 LP",c:"#8B5CF6"},{l:"Q1 Rev Est.",v:"$4.2M",s:<span className="kpi-up">↑ 14% vs plan</span>,c:"#10B981"}].map((k,i)=>(
+          <div className="kpi" key={i} ><div style={{position:"absolute",top:0,left:0,right:0,height:"2px",background:k.c}}/>  <div className="kpi-lbl">{k.l}</div><div className="kpi-val">{k.v}</div><div className="kpi-sub">{k.s}</div></div>
+        ))}
+      </div>
+      <div className="g-main mb16">
+        <div className="panel">
+          <div className="panel-hd"><div className="panel-title">Active Campaigns</div><span style={{fontSize:11,color:"var(--accent)",cursor:"pointer"}} onClick={()=>setNav("campaigns")}>View all →</span></div>
+          {CAMPAIGNS.map(c=>(
+            <div key={c.id} className="camp-row" onClick={()=>{setCamp(c);setNav("campaign-detail")}}>
+              <div className="camp-stripe" style={{background:c.color}}/>
+              <div className="camp-info"><div className="camp-name">{c.name}</div><div className="camp-meta">{c.start} – {c.end} · {c.owner}</div></div>
+              <div style={{display:"flex",gap:5,flexWrap:"wrap"}}>{c.channels.slice(0,3).map(ch=><span className="tag" key={ch}>{ch}</span>)}</div>
+              <span className={`pill ${statusCls(c.status)}`}><span className="pill-dot"/>{statusLbl(c.status)}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:14}}>
+          <div className="ai-panel panel">
+            <div className="panel-hd"><div className="panel-title" style={{color:"#a78bfa"}}>🤖 AI Insights</div><span style={{fontSize:10.5,color:"#818cf8",cursor:"pointer"}} onClick={()=>setNav("ai")}>Open →</span></div>
+            <div className="panel-bd" style={{padding:"12px 14px"}}>
+              {[{icon:"🧠",title:"Audience overlap",text:"Spring Guitar & Easter Deals share 68% of top email segment."},{icon:"📈",title:"Drum Kit momentum",text:"23% above CTR benchmark — recommend 48h extend."},{icon:"📅",title:"Late April gap",text:"Apr 23–May 2 has no promos — 9-day gap historically underperforms."}].map((ins,i)=>(
+                <div key={i} className="ai-ins"><span className="ai-ins-icon">{ins.icon}</span><div><div className="ai-ins-title">{ins.title}</div><div className="ai-ins-text">{ins.text}</div><div className="ai-cta">Take action →</div></div></div>
+              ))}
+            </div>
+          </div>
+          <div className="panel">
+            <div className="panel-hd"><div className="panel-title">Team Activity</div></div>
+            <div className="panel-bd" style={{padding:"8px 14px"}}>
+              {[{av:"JR",col:"#FF4500",text:"Drum Kit Blowout launched to 420K subscribers",time:"2h ago"},{av:"AI",col:"#8B5CF6",text:"Overlap detected: Spring Guitar + Easter audience segments",time:"4h ago"},{av:"KL",col:"#3B82F6",text:"3 banner assets uploaded to Spring Guitar",time:"Yesterday"}].map((a,i)=>(
+                <div key={i} style={{display:"flex",gap:9,padding:"7px 0",borderBottom:i<2?"1px solid var(--border)":"none",alignItems:"flex-start"}}>
+                  <div style={{width:26,height:26,borderRadius:"50%",background:a.col+"22",color:a.col,display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,flexShrink:0}}>{a.av}</div>
+                  <div><div style={{fontSize:11.5,lineHeight:1.4}}>{a.text}</div><div style={{fontSize:10,color:"var(--dim)",marginTop:2}}>{a.time}</div></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="g-main">
+        <div className="panel">
+          <div className="panel-hd"><div className="panel-title">Open Tasks</div><span style={{fontSize:10.5,color:"var(--accent)",cursor:"pointer"}} onClick={()=>setNav("tasks")}>All tasks →</span></div>
+          <div className="panel-bd" style={{padding:"6px 14px"}}>
+            {TASKS_DATA.filter(t=>!t.done).slice(0,5).map((t,i)=>(
+              <div key={i} className="task-item">
+                <div className={`task-check${t.done?" done":""}`}>{t.done?"✓":""}</div>
+                <div className={`task-txt${t.done?" done":""}`}>{t.text}</div>
+                <span className="task-owner">{t.owner}</span>
+                <span className={`task-due due-${t.dueStatus}`}>{t.due}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="panel">
+          <div className="panel-hd"><div className="panel-title">Performance</div><span style={{fontSize:10.5,color:"var(--accent)",cursor:"pointer"}} onClick={()=>setNav("performance")}>Details →</span></div>
+          <div className="panel-bd">
+            {[{l:"Email Open Rate",v:72,c:"#FF4500"},{l:"Click-Through Rate",v:58,c:"#10B981"},{l:"Conversion Rate",v:41,c:"#F59E0B"},{l:"ROI vs Plan",v:85,c:"#3B82F6"}].map((p,i)=>(
+              <div key={i} className="perf-row">
+                <div className="perf-hdr"><span>{p.l}</span><span>{p.v}%</span></div>
+                <div className="perf-track"><div className="perf-fill" style={{width:`${p.v}%`,background:p.c}}/></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ── PROMO CALENDAR ── */
+function PromoCalendar({setNav, setCamp, campaigns=[], onUpdateCampaigns=()=>{}}){
+  const [mo, setMo] = useState(0);
+  const [addModal, setAddModal] = useState(false);
+  const [editModal, setEditModal] = useState(null); // {campIdx, day}
+  const [newPromo, setNewPromo] = useState({name:"",start:"",end:"",color:"#FF4500",status:"scheduled",owner:"",budget:"",target:"",goal:"",offer:"",audience:"",channels:[],tags:[],assets:[],timeline:[]});
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const cur = (2 + mo + 12) % 12;
+  const COLORS = ["#FF4500","#F59E0B","#10B981","#3B82F6","#8B5CF6","#F43F5E","#06B6D4","#84CC16"];
+
+  // Build dynamic calendar from live campaigns list
+  const buildDynCal = () => {
+    const days = [];
+    for(let d=1; d<=31; d++){
+      const promos = campaigns.filter(c=>{
+        const startD = parseInt((c.start||"").replace(/[^0-9]/g,"").slice(-2)) || 0;
+        const endD   = parseInt((c.end||"").replace(/[^0-9]/g,"").slice(-2)) || 0;
+        const startMo = (c.start||"").toLowerCase();
+        const endMo   = (c.end||"").toLowerCase();
+        const inMar = startMo.includes("mar") || endMo.includes("mar");
+        if(!inMar) return false;
+        return d >= startD && d <= endD;
+      }).map(c=>({name:c.name, color:c.color}));
+      days.push({d, today:d===11, other:false, promos});
+    }
+    while(days.length < 35) days.push({d:days.length-30, today:false, other:true, promos:[]});
+    return days;
+  };
+  const dynCal = buildDynCal();
+  if(!campaigns) return <div style={{color:"var(--muted)",padding:40}}>Loading…</div>;
+
+  const saveNewPromo = () => {
+    const np = {...newPromo, id: Date.now()};
+    onUpdateCampaigns([...campaigns, np]);
+    setAddModal(false);
+    setNewPromo({name:"",start:"",end:"",color:"#FF4500",status:"scheduled",owner:"",budget:"",target:"",goal:"",offer:"",audience:"",channels:[],tags:[],assets:[],timeline:[]});
+  };
+
+  const removeCampaign = (id) => {
+    onUpdateCampaigns(campaigns.filter(c=>c.id!==id));
+  };
+
+  const coverage = Math.round((dynCal.filter(d=>!d.other && d.promos.length>0).length / 31)*100);
+  const nextLaunch = campaigns.filter(c=>c.status==="scheduled").sort((a,b)=>(parseInt((a.start||"").replace(/[^0-9]/g,""))||0)-(parseInt((b.start||"").replace(/[^0-9]/g,""))||0))[0];
+
+  return(
+    <>
+      <div className="kpi-grid g3 mb20">
+        {[
+          {l:"Promos This Month",v:campaigns.length,s:`${campaigns.filter(c=>c.status==="live").length} live · ${campaigns.filter(c=>c.status==="scheduled").length} scheduled`,c:"#FF4500"},
+          {l:"Calendar Coverage",v:`${coverage}%`,s:"of days have promo activity",c:"#10B981"},
+          {l:"Next Launch",v:nextLaunch?nextLaunch.start:"—",s:nextLaunch?nextLaunch.name:"No upcoming launches",c:"#3B82F6"}
+        ].map((k,i)=>(
+          <div className="kpi" key={i} ><div style={{position:"absolute",top:0,left:0,right:0,height:"2px",background:k.c}}/>  <div className="kpi-lbl">{k.l}</div><div className="kpi-val">{k.v}</div><div className="kpi-sub">{k.s}</div></div>
+        ))}
+      </div>
+      <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
+        <button className="btn btn-ghost btn-sm" onClick={()=>setMo(m=>m-1)}>◀</button>
+        <span style={{fontFamily:"'Syne',sans-serif",fontSize:18,fontWeight:800,letterSpacing:"-.5px",minWidth:160}}>{months[cur]} 2026</span>
+        <button className="btn btn-ghost btn-sm" onClick={()=>setMo(m=>m+1)}>▶</button>
+        <button className="btn btn-primary btn-sm" style={{marginLeft:"auto"}} onClick={()=>setAddModal(true)}>+ Add Promo</button>
+      </div>
+      <div className="g-main" style={{alignItems:"start"}}>
+        <div className="panel">
+          <div className="cal-grid-hdr">{["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d=><div key={d} className="cal-day-lbl">{d}</div>)}</div>
+          <div className="cal-grid">
+            {dynCal.map((cell,i)=>(
+              <div key={i} className={`cal-cell${cell.today?" today":""}${cell.other?" other":""}`}>
+                <div className="cal-dn">{cell.d}</div>
+                {cell.promos.slice(0,2).map((p,j)=>(
+                  <div key={j} className="cal-chip" style={{color:p.color,background:p.color+"16"}}
+                    onClick={()=>{const c=campaigns.find(x=>x.name===p.name);if(c){setCamp(c);setNav("campaign-detail");}}}>
+                    {p.name.replace(" Sale","").replace(" Deals","").replace(" Blowout","").replace(" Drop","")}
+                  </div>
+                ))}
+                {cell.promos.length>2&&<div style={{fontSize:8.5,color:"var(--dim)"}}>+{cell.promos.length-2}</div>}
+              </div>
+            ))}
+          </div>
+          <div style={{padding:"10px 14px",borderTop:"1px solid var(--border)",display:"flex",gap:12,flexWrap:"wrap"}}>
+            {campaigns.map(c=>(
+              <div key={c.id} style={{display:"flex",alignItems:"center",gap:5,fontSize:10.5,color:"var(--muted)"}}>
+                <div style={{width:7,height:7,borderRadius:2,background:c.color}}/>{c.name}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:12}}>
+          <div className="panel">
+            <div className="panel-hd">
+              <div className="panel-title">All Campaigns</div>
+              <span style={{fontSize:10.5,color:"var(--accent)",cursor:"pointer"}} onClick={()=>setNav("campaigns")}>List view →</span>
+            </div>
+            {campaigns.map(c=>(
+              <div key={c.id} className="camp-row">
+                <div className="camp-stripe" style={{background:c.color}}/>
+                <div className="camp-info" style={{cursor:"pointer"}} onClick={()=>{setCamp(c);setNav("campaign-detail");}}>
+                  <div className="camp-name" style={{fontSize:12.5}}>{c.name}</div>
+                  <div className="camp-meta">{c.start} – {c.end}</div>
+                </div>
+                <span className={`pill ${statusCls(c.status)}`} style={{fontSize:8}}>{statusLbl(c.status)}</span>
+                <span onClick={()=>removeCampaign(c.id)} title="Remove campaign" style={{color:"var(--dim)",cursor:"pointer",fontSize:13,padding:"0 4px",marginLeft:4}}>✕</span>
+              </div>
+            ))}
+            <div style={{padding:"8px 14px",borderTop:"1px solid var(--border)"}}>
+              <button className="btn btn-ghost btn-xs" style={{width:"100%",justifyContent:"center"}} onClick={()=>setAddModal(true)}>+ Add Campaign to Calendar</button>
+            </div>
+          </div>
+          <div className="ai-panel panel">
+            <div className="panel-hd" style={{borderBottom:"1px solid rgba(139,92,246,.15)"}}><div className="panel-title" style={{color:"#a78bfa"}}>🤖 Calendar Scan</div></div>
+            <div className="panel-bd" style={{padding:"12px 14px",fontSize:11.5,color:"var(--muted)",lineHeight:1.6}}>
+              <div style={{marginBottom:8,paddingBottom:8,borderBottom:"1px solid rgba(139,92,246,.1)"}}><span style={{color:"#f59e0b"}}>⚠ </span>Overlap: Spring Guitar + Easter share 68% email segment</div>
+              <div style={{marginBottom:8,paddingBottom:8,borderBottom:"1px solid rgba(139,92,246,.1)"}}><span style={{color:"#10B981"}}>● </span>Drum Kit trending 23% above CTR benchmark</div>
+              <div><span style={{color:"#f43f5e"}}>● </span>Late April gap: Apr 23–May 2 — no promos scheduled</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {addModal && (
+        <div className="overlay" onClick={()=>setAddModal(false)}>
+          <div className="modal" style={{maxWidth:520}} onClick={e=>e.stopPropagation()}>
+            <div className="modal-hd">
+              <div className="modal-hd-body"><div className="modal-title">Add Promo to Calendar</div></div>
+              <div className="modal-close" onClick={()=>setAddModal(false)}>✕</div>
+            </div>
+            <div className="modal-bd">
+              <div className="fr2" style={{marginBottom:9}}>
+                <div className="ffield"><div className="ffield-lbl">Campaign Name *</div><input className="ffield-input" placeholder="e.g. Summer Clearance" value={newPromo.name} onChange={e=>setNewPromo(p=>({...p,name:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">Owner</div><input className="ffield-input" placeholder="e.g. Jamie R." value={newPromo.owner} onChange={e=>setNewPromo(p=>({...p,owner:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">Start Date *</div><input className="ffield-input" placeholder="e.g. Mar 15" value={newPromo.start} onChange={e=>setNewPromo(p=>({...p,start:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">End Date *</div><input className="ffield-input" placeholder="e.g. Mar 22" value={newPromo.end} onChange={e=>setNewPromo(p=>({...p,end:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">Revenue Target</div><input className="ffield-input" placeholder="e.g. $500,000" value={newPromo.target} onChange={e=>setNewPromo(p=>({...p,target:e.target.value}))}/></div>
+              </div>
+              <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Offer / Headline</div><input className="ffield-input" placeholder="e.g. Up to 30% off guitars" value={newPromo.offer} onChange={e=>setNewPromo(p=>({...p,offer:e.target.value}))}/></div>
+              <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Goal</div><textarea className="ffield-input" rows={2} placeholder="Campaign objective…" value={newPromo.goal} onChange={e=>setNewPromo(p=>({...p,goal:e.target.value}))}/></div>
+              <div className="ffield" style={{marginBottom:12}}>
+                <div className="ffield-lbl">Status</div>
+                <select className="ffield-select" value={newPromo.status} onChange={e=>setNewPromo(p=>({...p,status:e.target.value}))}>
+                  {["live","scheduled","review","draft"].map(s=><option key={s} value={s}>{statusLbl(s)}</option>)}
+                </select>
+              </div>
+              <div style={{marginBottom:14}}>
+                <div style={{fontSize:9,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1.2px",marginBottom:7,fontWeight:600}}>Campaign Color</div>
+                <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                  {COLORS.map(col=><div key={col} onClick={()=>setNewPromo(p=>({...p,color:col}))} style={{width:22,height:22,borderRadius:4,background:col,cursor:"pointer",border:newPromo.color===col?"2px solid white":"2px solid transparent"}}/>)}
+                </div>
+              </div>
+              <div style={{display:"flex",gap:8}}>
+                <button className="btn btn-ghost btn-sm" onClick={()=>setAddModal(false)}>Cancel</button>
+                <button className="btn btn-primary btn-sm" onClick={saveNewPromo} disabled={!newPromo.name||!newPromo.start||!newPromo.end}>Add to Calendar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ── CAMPAIGNS LIST ── */
+function CampaignsList({setNav,setCamp,campaigns=CAMPAIGNS,setNewCampOpen=()=>{}}){
+  const [filter,setFilter]=useState("all");
+  const filtered=filter==="all"?campaigns:campaigns.filter(c=>c.status===filter);
+  return(
+    <>
+      <div style={{display:"flex",gap:7,marginBottom:18,flexWrap:"wrap"}}>
+        {["all","live","scheduled","review","draft"].map(f=>(
+          <button key={f} className={`btn btn-sm ${filter===f?"btn-active":"btn-ghost"}`} onClick={()=>setFilter(f)}>{f.charAt(0).toUpperCase()+f.slice(1)}{f==="all"?` (${CAMPAIGNS.length})`:""}</button>
+        ))}
+        <button className="btn btn-primary btn-sm" style={{marginLeft:"auto"}} onClick={()=>setNewCampOpen(true)}>+ New Campaign</button>
+      </div>
+      {filtered.map(c=>(
+        <div key={c.id} className="panel mb16" style={{cursor:"pointer"}} onClick={()=>{setCamp(c);setNav("campaign-detail")}}>
+          <div className="panel-hd">
+            <div style={{display:"flex",alignItems:"center",gap:10,flex:1}}>
+              <div style={{width:4,height:38,borderRadius:2,background:c.color,flexShrink:0}}/>
+              <div><div style={{fontFamily:"'Syne',sans-serif",fontSize:14,fontWeight:700}}>{c.name}</div><div style={{fontSize:11,color:"var(--muted)",marginTop:1}}>{c.start} – {c.end} · {c.owner} · {c.channels.join(", ")}</div></div>
+            </div>
+            <span className={`pill ${statusCls(c.status)}`}><span className="pill-dot"/>{statusLbl(c.status)}</span>
+          </div>
+          <div className="panel-bd" style={{padding:"11px 16px"}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:12}}>
+              {[["Goal",c.goal.slice(0,55)+"…"],["Offer",c.offer],["Budget",c.budget],["Target",c.target]].map(([l,v])=>(
+                <div key={l}><div style={{fontSize:9,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1px",marginBottom:2}}>{l}</div><div style={{fontSize:11.5,color:"var(--muted)"}}>{v}</div></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
+
+/* ── CAMPAIGN DETAIL ── */
+function EditableField({value, onChange, multiline=false, style={}}){
+  const [editing, setEditing] = useState(false);
+  const [val, setVal] = useState(value);
+  const ref = React.useRef();
+  useEffect(()=>{ if(editing && ref.current) ref.current.focus(); },[editing]);
+  if(editing) {
+    const props = {
+      ref, value:val,
+      onChange:e=>setVal(e.target.value),
+      onBlur:()=>{ setEditing(false); onChange(val); },
+      onKeyDown:e=>{ if(!multiline && e.key==="Enter"){ setEditing(false); onChange(val); } if(e.key==="Escape"){ setEditing(false); setVal(value); }},
+      style:{background:"transparent",border:"none",borderBottom:"1px solid var(--accent)",outline:"none",color:"var(--text)",fontFamily:"inherit",fontSize:"inherit",fontWeight:"inherit",width:"100%",padding:"1px 2px",resize:"none",lineHeight:1.5,...style}
+    };
+    return multiline ? <textarea {...props} rows={3}/> : <input {...props}/>;
+  }
+  return <span onClick={()=>setEditing(true)} title="Click to edit" style={{cursor:"text",borderBottom:"1px dashed var(--border2)",paddingBottom:1,...style}}>{val||<span style={{color:"var(--dim)"}}>Click to edit…</span>}</span>;
+}
+
+function StatusSelect({value, onChange}){
+  return(
+    <select value={value} onChange={e=>onChange(e.target.value)}
+      style={{background:"var(--card2)",border:"1px solid var(--border2)",borderRadius:4,color:"var(--text)",fontFamily:"'DM Sans',sans-serif",fontSize:11,padding:"3px 8px",cursor:"pointer",outline:"none"}}>
+      {["live","scheduled","review","draft","complete"].map(s=><option key={s} value={s}>{statusLbl(s)}</option>)}
+    </select>
+  );
+}
+
+function CampaignDetail({campaign, setNav, onUpdate}){
+  if(!campaign) return null;
+  const [c, setC] = useState(campaign);
+  const [ticketOpen, setTicketOpen] = useState(false);
+  const [uploads, setUploads] = useState([]);
+  const campTickets = TICKETS_DATA.filter(t=>t.camp===campaign.name);
+  useEffect(()=>setC(campaign),[campaign]);
+  const update = (field, val) => { const nc={...c,[field]:val}; setC(nc); onUpdate(nc); };
+  const updateAsset = (i, field, val) => {
+    const assets=[...c.assets]; assets[i]={...assets[i],[field]:val};
+    const nc={...c,assets}; setC(nc); onUpdate(nc);
+  };
+  const addAsset = () => {
+    const assets=[...c.assets,{size:"New Size",name:"New Asset",done:false}];
+    const nc={...c,assets}; setC(nc); onUpdate(nc);
+  };
+  const removeAsset = (i) => {
+    const assets=c.assets.filter((_,j)=>j!==i);
+    const nc={...c,assets}; setC(nc); onUpdate(nc);
+  };
+  const updateTimeline = (i, field, val) => {
+    const timeline=[...c.timeline]; timeline[i]={...timeline[i],[field]:val};
+    const nc={...c,timeline}; setC(nc); onUpdate(nc);
+  };
+  const addTimelineItem = () => {
+    const timeline=[...c.timeline,{l:"New Milestone",d:"TBD",s:"pending"}];
+    const nc={...c,timeline}; setC(nc); onUpdate(nc);
+  };
+  const COLORS=["#FF4500","#F59E0B","#10B981","#3B82F6","#8B5CF6","#F43F5E","#06B6D4","#84CC16"];
+  return(
+    <>
+      <div style={{marginBottom:12,display:"flex",alignItems:"center",gap:8}}>
+        <button className="btn btn-ghost btn-sm" onClick={()=>setNav("campaigns")}>← All Campaigns</button>
+        <span style={{fontSize:11,color:"var(--green)",marginLeft:"auto"}}>✓ Changes save automatically</span>
+      </div>
+      <div className="panel mb16" style={{background:"var(--card)"}}>
+        <div style={{height:3,background:c.color}}/>
+        <div style={{padding:"18px 20px"}}>
+          <div style={{display:"flex",alignItems:"flex-start",gap:12,marginBottom:14}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:800,letterSpacing:"-.4px",flex:1}}>
+              <EditableField value={c.name} onChange={v=>update("name",v)} style={{fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:800}}/>
+            </div>
+            <StatusSelect value={c.status} onChange={v=>update("status",v)}/>
+            <button className="btn btn-primary btn-sm" onClick={()=>setTicketOpen(true)}>+ Create Ticket</button>
+          </div>
+          <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:10}}>
+            {COLORS.map(col=><div key={col} onClick={()=>update("color",col)} style={{width:16,height:16,borderRadius:3,background:col,cursor:"pointer",border:c.color===col?"2px solid white":"2px solid transparent"}}/>)}
+            <span style={{fontSize:10,color:"var(--dim)",marginLeft:4,alignSelf:"center"}}>Campaign color</span>
+          </div>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:10}}>
+            {[["Owner","owner"],["Start","start"],["End","end"],["Target","target"]].map(([l,f])=>(
+              <div key={f} style={{fontSize:11.5}}>
+                <div style={{fontSize:9,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1px",marginBottom:2}}>{l}</div>
+                <EditableField value={c[f]} onChange={v=>update(f,v)} style={{fontSize:11.5,color:"var(--text)",fontWeight:500}}/>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="g-wide">
+        <div>
+          <div style={{fontFamily:"'Syne',sans-serif",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",color:"var(--dim)",marginBottom:9}}>Campaign Brief</div>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:14}}>
+            <div className="mfield" style={{gridColumn:"1/-1"}}>
+              <div className="mfield-lbl">Goal</div>
+              <div className="mfield-val"><EditableField value={c.goal} onChange={v=>update("goal",v)} multiline={true}/></div>
+            </div>
+            <div className="mfield">
+              <div className="mfield-lbl">Offer</div>
+              <div className="mfield-val"><EditableField value={c.offer} onChange={v=>update("offer",v)} multiline={true}/></div>
+            </div>
+            <div className="mfield">
+              <div className="mfield-lbl">Audience</div>
+              <div className="mfield-val mt"><EditableField value={c.audience} onChange={v=>update("audience",v)} multiline={true}/></div>
+            </div>
+            <div className="mfield">
+              <div className="mfield-lbl">Channels (comma separated)</div>
+              <div className="mfield-val"><EditableField value={c.channels.join(", ")} onChange={v=>update("channels",v.split(",").map(x=>x.trim()))}/></div>
+            </div>
+            <div className="mfield">
+              <div className="mfield-lbl">Tags (comma separated)</div>
+              <div className="mfield-val"><EditableField value={c.tags.join(", ")} onChange={v=>update("tags",v.split(",").map(x=>x.trim()))}/></div>
+            </div>
+          </div>
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:9,marginTop:16}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",color:"var(--dim)"}}>Creative Assets</div>
+            <button className="btn btn-ghost btn-xs" onClick={addAsset}>+ Add Asset</button>
+          </div>
+          <div className="panel">
+            <div className="panel-bd" style={{padding:"6px 14px"}}>
+              {c.assets.map((a,i)=>(
+                <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"7px 0",borderBottom:i<c.assets.length-1?"1px solid var(--border)":"none"}}>
+                  <div className={`spec-check${a.done?" done":""}`} onClick={()=>updateAsset(i,"done",!a.done)} style={{cursor:"pointer"}}>{a.done?"✓":""}</div>
+                  <span style={{fontSize:9.5,width:90,flexShrink:0}}>
+                    <EditableField value={a.size} onChange={v=>updateAsset(i,"size",v)} style={{fontSize:9.5,color:"var(--dim)",fontWeight:600}}/>
+                  </span>
+                  <span style={{flex:1,fontSize:12}}>
+                    <EditableField value={a.name} onChange={v=>updateAsset(i,"name",v)} style={{fontSize:12}}/>
+                  </span>
+                  <span style={{fontSize:11,color:a.done?"var(--green)":"var(--dim)",minWidth:70,textAlign:"right"}}>{a.done?"✅ Done":"⏳ Pending"}</span>
+                  <span onClick={()=>removeAsset(i)} style={{color:"var(--dim)",cursor:"pointer",fontSize:13,padding:"0 3px"}}>✕</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── LINKED TICKETS ── */}
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:9,marginTop:20}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",color:"var(--dim)"}}>Linked Tickets</div>
+            <button className="btn btn-ghost btn-xs" onClick={()=>setTicketOpen(true)}>+ New Ticket</button>
+          </div>
+          {campTickets.length===0
+            ? <div style={{background:"var(--card2)",border:"1px dashed var(--border2)",borderRadius:"var(--r)",padding:"14px 16px",fontSize:12,color:"var(--dim)",textAlign:"center",cursor:"pointer"}} onClick={()=>setTicketOpen(true)}>No tickets yet — click to create one linked to this campaign</div>
+            : <div className="panel">
+                {campTickets.map((t,i)=>(
+                  <div key={t.id} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",borderBottom:i<campTickets.length-1?"1px solid var(--border)":"none"}}>
+                    <div style={{width:3,height:30,borderRadius:2,background:t.campColor||c.color,flexShrink:0}}/>
+                    <div style={{flex:1}}>
+                      <div style={{fontSize:12,fontWeight:500}}>{t.title}</div>
+                      <div style={{fontSize:10.5,color:"var(--muted)",marginTop:1}}>{t.type} · Due {t.due}</div>
+                    </div>
+                    <span className={`pill ${statusCls(t.col)}`} style={{fontSize:8}}>{t.col}</span>
+                    <span style={{fontSize:9.5,color:priorityColor(t.priority),fontWeight:600}}>{t.priority}</span>
+                  </div>
+                ))}
+              </div>
+          }
+
+          {/* ── RAW ASSET UPLOADS ── */}
+          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:9,marginTop:20}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",color:"var(--dim)"}}>Raw Asset Uploads</div>
+          </div>
+          <div className="upload-zone" onClick={()=>{ const f=document.createElement("input");f.type="file";f.multiple=true;f.onchange=e=>{const files=Array.from(e.target.files);setUploads(u=>[...u,...files.map(f=>({name:f.name,size:(f.size/1024/1024).toFixed(1)+"MB",type:f.type}))]);};f.click(); }}>
+            <div style={{fontSize:22,marginBottom:5}}>☁</div>
+            <div style={{fontSize:12.5,fontWeight:500,marginBottom:2}}>Click to upload raw assets</div>
+            <div style={{fontSize:11,color:"var(--muted)"}}>Reference files, mood boards, brand assets, PSDs · Any format</div>
+          </div>
+          {uploads.map((f,i)=>(
+            <div key={i} className="upload-file">
+              <span style={{fontSize:14}}>🗂</span>
+              <span style={{flex:1,fontSize:12}}>{f.name}</span>
+              <span style={{fontSize:10.5,color:"var(--muted)"}}>{f.size}</span>
+              <span style={{fontSize:10.5,color:"var(--green)"}}>✅ Uploaded</span>
+              <span onClick={()=>setUploads(u=>u.filter((_,j)=>j!==i))} style={{color:"var(--dim)",cursor:"pointer",fontSize:12,padding:"0 3px"}}>✕</span>
+            </div>
+          ))}
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:12}}>
+          <div className="panel">
+            <div className="panel-hd">
+              <div className="panel-title">Timeline</div>
+              <button className="btn btn-ghost btn-xs" onClick={addTimelineItem}>+ Add</button>
+            </div>
+            <div className="panel-bd">
+              <div className="tl">
+                {c.timeline.map((t,i)=>(
+                  <div key={i} className="tl-item">
+                    <div className={`tl-dot ${t.s}`} onClick={()=>{const states=["pending","active","done"];const ni=(states.indexOf(t.s)+1)%3;updateTimeline(i,"s",states[ni]);}} style={{cursor:"pointer"}} title="Click to cycle status">{t.s==="done"&&"✓"}</div>
+                    <div>
+                      <div className="tl-lbl"><EditableField value={t.l} onChange={v=>updateTimeline(i,"l",v)} style={{fontSize:12,fontWeight:500}}/></div>
+                      <div className="tl-date"><EditableField value={t.d} onChange={v=>updateTimeline(i,"d",v)} style={{fontSize:10.5,color:"var(--muted)"}}/></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="ai-panel panel">
+            <div className="panel-hd" style={{borderBottom:"1px solid rgba(139,92,246,.15)"}}><div className="panel-title" style={{color:"#a78bfa"}}>🤖 AI Recommendation</div></div>
+            <div className="panel-bd" style={{padding:"12px 14px",fontSize:11.5,color:"var(--muted)",lineHeight:1.6}}>
+              Based on similar campaigns, consider a 3-touch email drip with countdown timer on touch 2. Lookalike audiences on Meta outperformed interest targeting by 31% last spring.
+              <div style={{color:"#818cf8",marginTop:7,cursor:"pointer",fontSize:11}}>Generate full brief →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {ticketOpen && <CampaignTicketModal campaign={c} onClose={()=>setTicketOpen(false)}/>}
+    </>
+  );
+}
+
+// ── CAMPAIGN TICKET MODAL (pre-filled from campaign) ──
+function CampaignTicketModal({campaign, onClose}){
+  const c = campaign;
+  const [ttype, setTtype] = useState("Design");
+  const [title, setTitle] = useState(`${c.name} — `);
+  const [priority, setPriority] = useState("High");
+  const [assignee, setAssignee] = useState("Unassigned");
+  const [due, setDue] = useState(c.start||"");
+  const [desc, setDesc] = useState("");
+  const [specs, setSpecs] = useState([]);
+  const [tones, setTones] = useState([]);
+  const [placements, setPlacements] = useState([]);
+  const [tab, setTab] = useState("logistics");
+  const COLORS2 = ["#FF4500","#F59E0B","#10B981","#3B82F6","#8B5CF6","#F43F5E"];
+  const STD2 = {Display:[{size:"300×250",name:"Rectangle"},{size:"728×90",name:"Leaderboard"},{size:"300×600",name:"Half Page"}],Social:[{size:"1080×1080",name:"IG/FB Feed"},{size:"1080×1920",name:"Story/TikTok"}],Email:[{size:"600×300",name:"Email Hero"}]};
+  const PLAC2 = [{ico:"📧",l:"Email"},{ico:"🖥",l:"Display"},{ico:"📱",l:"Paid Social"},{ico:"🌐",l:"Website/LP"},{ico:"💬",l:"SMS"},{ico:"🔗",l:"Affiliate"}];
+  const TONE2 = ["Bold / High Energy","Clean / Minimal","Lifestyle","Product-Forward","Urgency / Sale","Aspirational"];
+  const addSpec = () => setSpecs(s=>[...s,{id:Date.now(),size:"",name:"",done:false}]);
+  const loadSpecs = k => setSpecs(STD2[k].map((s,i)=>({...s,id:i,done:false})));
+  const removeSpec = id => setSpecs(s=>s.filter(x=>x.id!==id));
+  const updateSpec = (id,f,v) => setSpecs(s=>s.map(x=>x.id===id?{...x,[f]:v}:x));
+  const toggleTone = t => setTones(s=>s.includes(t)?s.filter(x=>x!==t):[...s,t]);
+  const togglePlac = p => setPlacements(s=>s.includes(p)?s.filter(x=>x!==p):[...s,p]);
+  const TABS2=[{id:"logistics",l:"📋 Logistics"},{id:"creative",l:"🎨 Creative"},{id:"specs",l:"📐 Specs"},{id:"placement",l:"📍 Placement"}];
+  return(
+    <div className="overlay" onClick={onClose}>
+      <div className="modal" style={{maxWidth:780,height:"88vh",display:"flex",flexDirection:"column"}} onClick={e=>e.stopPropagation()}>
+        <div style={{padding:"14px 20px",borderBottom:"1px solid var(--border)",background:"var(--surface)",flexShrink:0}}>
+          <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}>
+            <div style={{flex:1}}>
+              <div style={{fontSize:9,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1px",marginBottom:3}}>New Ticket — Auto-linked to campaign</div>
+              <input style={{background:"transparent",border:"none",borderBottom:"1px solid var(--border2)",outline:"none",color:"var(--text)",fontFamily:"inherit",fontSize:16,fontWeight:700,width:"100%",padding:"2px 0"}} value={title} onChange={e=>setTitle(e.target.value)} placeholder="Ticket title…"/>
+            </div>
+            <button className="btn btn-ghost btn-sm" onClick={onClose}>Cancel</button>
+            <button className="btn btn-primary btn-sm" onClick={onClose}>Submit Ticket</button>
+          </div>
+          <div style={{display:"flex",gap:6}}>
+            <div style={{fontSize:10,padding:"3px 10px",borderRadius:4,background:c.color+"22",color:c.color,border:`1px solid ${c.color}44`,fontWeight:600}}>📋 {c.name}</div>
+            <div style={{fontSize:10,padding:"3px 10px",borderRadius:4,background:"var(--card2)",color:"var(--muted)",border:"1px solid var(--border)"}}>📅 {c.start} – {c.end}</div>
+            {(c.tags||[]).map(t=><div key={t} style={{fontSize:10,padding:"3px 10px",borderRadius:4,background:"var(--card2)",color:"var(--muted)",border:"1px solid var(--border)"}}>#{t}</div>)}
+          </div>
+        </div>
+        <div style={{display:"flex",borderBottom:"1px solid var(--border)",background:"var(--surface)",flexShrink:0}}>
+          {TABS2.map(t=><div key={t.id} className={`tab${tab===t.id?" active":""}`} onClick={()=>setTab(t.id)}>{t.l}</div>)}
+        </div>
+        <div style={{flex:1,overflow:"hidden",display:"grid",gridTemplateColumns:"1fr 220px"}}>
+          <div style={{overflowY:"auto",padding:"16px 20px"}}>
+            {tab==="logistics"&&(
+              <>
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:9}}>
+                  <div className="ffield" style={{gridColumn:"1/-1"}}><div className="ffield-lbl">Ticket Type</div>
+                    <div style={{display:"flex",gap:7,marginTop:4}}>
+                      {["Design","Landing Page"].map(t=><button key={t} className={`btn btn-sm ${ttype===t?"btn-active":"btn-ghost"}`} onClick={()=>setTtype(t)}>{t==="Design"?"🎨 Design":"🌐 Landing Page"}</button>)}
+                    </div>
+                  </div>
+                  <div className="ffield"><div className="ffield-lbl">Priority</div><select className="ffield-select" value={priority} onChange={e=>setPriority(e.target.value)}>{["Urgent","High","Medium","Low"].map(p=><option key={p}>{p}</option>)}</select></div>
+                  <div className="ffield"><div className="ffield-lbl">Assign To</div><select className="ffield-select" value={assignee} onChange={e=>setAssignee(e.target.value)}>{["Unassigned","KL — Kayla L.","MR — Marcus R.","JT — Jordan T."].map(t=><option key={t}>{t}</option>)}</select></div>
+                  <div className="ffield"><div className="ffield-lbl">Due Date</div><input className="ffield-input" value={due} onChange={e=>setDue(e.target.value)} placeholder="e.g. Mar 20"/></div>
+                  <div className="ffield"><div className="ffield-lbl">Offer / Headline (auto-filled)</div><input className="ffield-input" defaultValue={c.offer||""} placeholder="Campaign offer…"/></div>
+                </div>
+                {ttype==="Landing Page"&&(
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9}}>
+                    <div className="ffield"><div className="ffield-lbl">Target URL / Slug</div><input className="ffield-input" placeholder="/spring-guitar-sale"/></div>
+                    <div className="ffield"><div className="ffield-lbl">Promo Code</div><input className="ffield-input" placeholder="SPRING30"/></div>
+                    <div className="ffield"><div className="ffield-lbl">Takedown Date</div><input className="ffield-input" placeholder={c.end||"End date"}/></div>
+                    <div className="ffield"><div className="ffield-lbl">Redirect From</div><input className="ffield-input" placeholder="/guitars/sale"/></div>
+                  </div>
+                )}
+                <div className="ffield" style={{marginTop:4}}><div className="ffield-lbl">Description / Notes</div><textarea className="ffield-input" rows={3} value={desc} onChange={e=>setDesc(e.target.value)} placeholder="Describe what needs to be created…"/></div>
+              </>
+            )}
+            {tab==="creative"&&(
+              <>
+                <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Goal (auto-filled)</div><textarea className="ffield-input" rows={2} defaultValue={c.goal||""}/></div>
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:9}}>
+                  <div className="ffield"><div className="ffield-lbl">Headline / Offer</div><input className="ffield-input" defaultValue={c.offer||""}/></div>
+                  <div className="ffield"><div className="ffield-lbl">CTA Text</div><input className="ffield-input" placeholder="e.g. Shop the Sale"/></div>
+                </div>
+                <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Tone & Visual Direction</div><div style={{display:"flex",flexWrap:"wrap",marginTop:5}}>{TONE2.map(t=><span key={t} className={`tchip${tones.includes(t)?" on":""}`} onClick={()=>toggleTone(t)}>{t}</span>)}</div></div>
+                <div className="ffield"><div className="ffield-lbl">Color / Brand Notes</div><textarea className="ffield-input" rows={2} placeholder="Use MF brand red…"/></div>
+              </>
+            )}
+            {tab==="specs"&&(
+              <>
+                {specs.length===0&&<div style={{marginBottom:10}}>
+                  <div style={{fontSize:12,color:"var(--muted)",marginBottom:8}}>Load standard set or start blank:</div>
+                  <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
+                    {Object.keys(STD2).map(k=><button key={k} className="btn btn-ghost btn-sm" onClick={()=>loadSpecs(k)}>{k==="Display"?"🖥":k==="Social"?"📱":"📧"} {k}</button>)}
+                    <button className="btn btn-ghost btn-sm" onClick={addSpec}>+ Blank</button>
+                  </div>
+                </div>}
+                {specs.length>0&&<div className="panel" style={{marginBottom:8}}>
+                  <table className="spec-table">
+                    <thead><tr><th style={{width:28}}>✓</th><th style={{width:110}}>Size</th><th>Asset Name</th><th style={{width:24}}></th></tr></thead>
+                    <tbody>{specs.map(s=><tr key={s.id}>
+                      <td><div className={`spec-check${s.done?" done":""}`} onClick={()=>updateSpec(s.id,"done",!s.done)}>{s.done?"✓":""}</div></td>
+                      <td><input className="spec-input" value={s.size} onChange={e=>updateSpec(s.id,"size",e.target.value)} placeholder="300×250"/></td>
+                      <td><input className="spec-input" value={s.name} onChange={e=>updateSpec(s.id,"name",e.target.value)} placeholder="Description…"/></td>
+                      <td><span style={{color:"var(--dim)",cursor:"pointer"}} onClick={()=>removeSpec(s.id)}>✕</span></td>
+                    </tr>)}</tbody>
+                  </table>
+                  <div style={{padding:"5px 10px",borderTop:"1px solid var(--border)"}}><button className="btn btn-ghost btn-xs" onClick={addSpec}>+ Add</button></div>
+                </div>}
+              </>
+            )}
+            {tab==="placement"&&(
+              <div className="placement-grid">
+                {PLAC2.map(p=><div key={p.l} className={`placement-opt${placements.includes(p.l)?" on":""}`} onClick={()=>togglePlac(p.l)}><div className="placement-opt-ico">{p.ico}</div><div className="placement-opt-lbl">{p.l}</div></div>)}
+              </div>
+            )}
+          </div>
+          <div style={{borderLeft:"1px solid var(--border)",background:"var(--surface)",padding:"14px 12px",overflowY:"auto"}}>
+            <div style={{fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",color:"var(--dim)",marginBottom:8}}>Campaign</div>
+            <div style={{fontSize:11.5,marginBottom:12,color:"var(--text)"}}>{c.name}</div>
+            <div style={{fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",color:"var(--dim)",marginBottom:8}}>Dates</div>
+            <div style={{fontSize:11.5,marginBottom:12,color:"var(--muted)"}}>{c.start} – {c.end}</div>
+            <div style={{fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",color:"var(--dim)",marginBottom:8}}>Priority</div>
+            <div style={{fontSize:11.5,marginBottom:12,color:priorityColor(priority),fontWeight:600}}>{priority}</div>
+            <div style={{fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",color:"var(--dim)",marginBottom:8}}>Specs</div>
+            <div style={{fontSize:11.5,color:"var(--muted)"}}>{specs.length>0?`${specs.length} assets defined`:"None yet"}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── EMAIL CADENCE ── */
+function EmailCadence(){
+  const [typeFil,setTypeFil]=useState([]);
+  const [campFil,setCampFil]=useState("All");
+  const [search,setSearch]=useState("");
+  const [selected,setSelected]=useState(null);
+  const [syncUrl,setSyncUrl]=useState("");
+  const [showLinkInput,setShowLinkInput]=useState(false);
+  const [linkInput,setLinkInput]=useState("");
+  const allCamps=["All",...Array.from(new Set(EMAIL_SENDS.map(e=>e.campaign)))];
+  const filtered=useMemo(()=>EMAIL_SENDS.filter(e=>{
+    if(typeFil.length&&!typeFil.includes(e.type)) return false;
+    if(campFil!=="All"&&e.campaign!==campFil) return false;
+    if(search&&![e.subject,e.subLabel,e.campaign,e.audience].join(" ").toLowerCase().includes(search.toLowerCase())) return false;
+    return true;
+  }),[typeFil,campFil,search]);
+  const toggleType=t=>setTypeFil(f=>f.includes(t)?f.filter(x=>x!==t):[...f,t]);
+  const counts={total:filtered.length,dedicated:filtered.filter(e=>e.type==="dedicated").length,feature:filtered.filter(e=>e.type==="feature").length,trigger:filtered.filter(e=>e.type==="trigger").length};
+  return(
+    <>
+      <div className="sync-banner">
+        <div className="sync-dot"/>
+        <div style={{flex:1}}>
+          <div style={{fontSize:12.5,fontWeight:500,color:"var(--green)"}}>Email Calendar — {syncUrl?"Link Connected":"No Link Connected"}</div>
+          <div style={{fontSize:11,color:"var(--muted)",marginTop:1}}>{syncUrl?`Synced from: ${syncUrl}`:"Paste your SharePoint or Google Sheets link below to connect your email calendar"}</div>
+        </div>
+        {syncUrl
+          ? <code style={{fontSize:9.5,color:"var(--muted)",background:"var(--card2)",padding:"3px 8px",borderRadius:4,border:"1px solid var(--border)",maxWidth:220,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{syncUrl}</code>
+          : null}
+        <button className="btn btn-ghost btn-sm" onClick={()=>setShowLinkInput(v=>!v)}>⚙ {syncUrl?"Change Link":"Connect Link"}</button>
+      </div>
+      {showLinkInput && (
+        <div style={{background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--rl)",padding:"14px 16px",marginBottom:14,display:"flex",gap:8,alignItems:"center"}}>
+          <input
+            style={{flex:1,background:"var(--card2)",border:"1px solid var(--border2)",borderRadius:"var(--r)",padding:"8px 12px",color:"var(--text)",fontFamily:"inherit",fontSize:12.5,outline:"none"}}
+            placeholder="Paste SharePoint, Google Sheets, or Excel Online URL…"
+            value={linkInput}
+            onChange={e=>setLinkInput(e.target.value)}
+            onKeyDown={e=>{if(e.key==="Enter"&&linkInput.trim()){setSyncUrl(linkInput.trim());setShowLinkInput(false);}}}
+          />
+          <button className="btn btn-primary btn-sm" onClick={()=>{if(linkInput.trim()){setSyncUrl(linkInput.trim());setShowLinkInput(false);}}}>Connect</button>
+          {syncUrl && <button className="btn btn-ghost btn-sm" onClick={()=>{setSyncUrl("");setLinkInput("");setShowLinkInput(false);}}>Remove</button>}
+          <button className="btn btn-ghost btn-sm" onClick={()=>setShowLinkInput(false)}>Cancel</button>
+        </div>
+      )}
+      <div className="kpi-grid g4 mb16">
+        {[{l:"Total Sends",v:counts.total,c:"#FF4500"},{l:"Dedicated",v:counts.dedicated,c:"#FF4500"},{l:"Features",v:counts.feature,c:"#3B82F6"},{l:"Triggered",v:counts.trigger,c:"#8B5CF6"}].map((k,i)=>(
+          <div className="kpi" key={i} ><div style={{position:"absolute",top:0,left:0,right:0,height:"2px",background:k.c}}/>  <div className="kpi-lbl">{k.l}</div><div className="kpi-val">{k.v}</div></div>
+        ))}
+      </div>
+      <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:14,alignItems:"center"}}>
+        <div style={{display:"flex",background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--r)",padding:"3px 5px",gap:2}}>
+          <span style={{fontSize:9.5,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1px",padding:"4px 7px",borderRight:"1px solid var(--border)",marginRight:3}}>Type</span>
+          {["dedicated","feature","trigger"].map(t=>(
+            <button key={t} className={`btn btn-xs ${typeFil.includes(t)?"btn-active":"btn-ghost"}`} style={{border:"none"}} onClick={()=>toggleType(t)}>{t.charAt(0).toUpperCase()+t.slice(1)}</button>
+          ))}
+        </div>
+        <div style={{display:"flex",background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--r)",padding:"3px 5px",gap:2,flexWrap:"wrap"}}>
+          <span style={{fontSize:9.5,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1px",padding:"4px 7px",borderRight:"1px solid var(--border)",marginRight:3}}>Campaign</span>
+          {allCamps.map(c=>(
+            <button key={c} className={`btn btn-xs ${campFil===c?"btn-active":"btn-ghost"}`} style={{border:"none",borderLeft:c!=="All"?`2px solid ${campColor(c)}`:"none"}} onClick={()=>setCampFil(c)}>{c==="All"?"All":c.split(" ").slice(0,2).join(" ")}</button>
+          ))}
+        </div>
+        <input style={{background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--r)",padding:"6px 11px",color:"var(--text)",fontFamily:"'DM Sans',sans-serif",fontSize:11.5,outline:"none",width:180}} placeholder="Search…" value={search} onChange={e=>setSearch(e.target.value)}/>
+      </div>
+      <div className="panel" style={{overflow:"hidden"}}>
+        <div style={{overflowX:"auto",maxHeight:480,overflowY:"auto"}}>
+          <table className="ec-table">
+            <thead><tr><th>Date</th><th>Type</th><th>Subject / Details</th><th>Campaign</th><th>Audience</th><th>Time</th><th>OR</th><th>CTR</th></tr></thead>
+            <tbody>
+              {filtered.map(e=>(
+                <tr key={e.id} onClick={()=>setSelected(e)}>
+                  <td style={{whiteSpace:"nowrap"}}><div style={{fontSize:12,fontWeight:600}}>{e.date}</div></td>
+                  <td><span className={`ec-badge ${e.type==="dedicated"?"ec-ded":e.type==="feature"?"ec-feat":"ec-trig"}`}>{e.type==="dedicated"?"● Dedicated":e.type==="feature"?"◆ Feature":"⚡ Auto"}</span></td>
+                  <td style={{maxWidth:220}}><div style={{fontSize:12,fontWeight:500}}>{e.subject}</div>{e.subLabel&&<div style={{fontSize:10.5,color:"var(--muted)",marginTop:1}}>{e.subLabel}</div>}</td>
+                  <td><div style={{fontSize:10,padding:"2px 7px",borderRadius:3,background:campColor(e.campaign)+"18",color:campColor(e.campaign),borderLeft:`2px solid ${campColor(e.campaign)}`,display:"inline-flex"}}>{e.campaign}</div></td>
+                  <td><div style={{fontSize:11,color:"var(--muted)"}}>{e.audience}</div><div style={{fontSize:9.5,color:"var(--dim)",marginTop:1}}>{e.segment}</div></td>
+                  <td style={{fontSize:11,color:"var(--muted)",whiteSpace:"nowrap"}}>{e.send_time}</td>
+                  <td>{e.or!=="—"?<span className={parseFloat(e.or)>30?"ec-good":"ec-avg"}>{e.or}</span>:<span className="ec-blank">—</span>}</td>
+                  <td>{e.ctr!=="—"?<span className={parseFloat(e.ctr)>5?"ec-good":"ec-avg"}>{e.ctr}</span>:<span className="ec-blank">—</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {selected&&(
+        <div className="overlay" onClick={()=>setSelected(null)}>
+          <div className="modal" onClick={e=>e.stopPropagation()}>
+            <div className="modal-hd">
+              <div className="modal-hd-body"><div className="modal-id">{selected.id} · {selected.date} · {selected.send_time}</div><div className="modal-title">{selected.subject}</div>{selected.subLabel&&<div style={{fontSize:12,color:"var(--muted)",marginTop:3}}>{selected.subLabel}</div>}</div>
+              <div className="modal-close" onClick={()=>setSelected(null)}>✕</div>
+            </div>
+            <div className="modal-bd">
+              <div className="field-row fr2 mb12">
+                <div className="mfield"><div className="mfield-lbl">Campaign</div><div className="mfield-val" style={{color:campColor(selected.campaign)}}>{selected.campaign}</div></div>
+                <div className="mfield"><div className="mfield-lbl">Segment</div><div className="mfield-val mt">{selected.segment}</div></div>
+                <div className="mfield"><div className="mfield-lbl">Open Rate</div><div className="mfield-val" style={{fontSize:22,fontFamily:"'Syne',sans-serif",fontWeight:800,color:selected.or==="—"?"var(--dim)":"var(--green)"}}>{selected.or}</div></div>
+                <div className="mfield"><div className="mfield-lbl">CTR</div><div className="mfield-val" style={{fontSize:22,fontFamily:"'Syne',sans-serif",fontWeight:800,color:selected.ctr==="—"?"var(--dim)":"var(--blue)"}}>{selected.ctr}</div></div>
+              </div>
+              {selected.notes&&<div className="mfield"><div className="mfield-lbl">Notes</div><div className="mfield-val mt">{selected.notes}</div></div>}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ── TICKETS ── */
+const BOARD_COLS=["Open","In Progress","In Review","Complete"];
+function Tickets(){
+  const [tickets]=useState(TICKETS_DATA);
+  const [view,setView]=useState("board");
+  const [typeFil,setTypeFil]=useState("All");
+  const [selected,setSelected]=useState(null);
+  const [newOpen,setNewOpen]=useState(false);
+  const filtered=typeFil==="All"?tickets:tickets.filter(t=>t.type===typeFil);
+  return(
+    <>
+      <div className="kpi-grid g4 mb16">
+        {[{l:"Open",v:tickets.filter(t=>t.col==="Open").length,c:"#FF4500"},{l:"In Progress",v:tickets.filter(t=>t.col==="In Progress").length,c:"#8B5CF6"},{l:"Overdue",v:tickets.filter(t=>t.dueStatus==="late").length,c:"#F43F5E"},{l:"Complete (30d)",v:tickets.filter(t=>t.col==="Complete").length,c:"#10B981"}].map((k,i)=>(
+          <div className="kpi" key={i} ><div style={{position:"absolute",top:0,left:0,right:0,height:"2px",background:k.c}}/>  <div className="kpi-lbl">{k.l}</div><div className="kpi-val">{k.v}</div></div>
+        ))}
+      </div>
+      <div className="ai-panel panel mb16">
+        <div className="panel-bd" style={{padding:"11px 14px",display:"flex",alignItems:"center",gap:10}}>
+          <span style={{fontSize:18}}>🤖</span>
+          <div style={{flex:1}}>
+            <span style={{fontSize:12,fontWeight:600,color:"#a78bfa"}}>AI Suggestion: </span>
+            <span style={{fontSize:12,color:"var(--muted)"}}>Easter Weekend Deals needs 3 tickets (email hero series, LP, display set). Launch is Apr 18 — assets should be due by Apr 4.</span>
+          </div>
+          <button className="btn btn-violet btn-sm">Auto-generate tickets →</button>
+        </div>
+      </div>
+      <div style={{display:"flex",gap:7,marginBottom:14,alignItems:"center"}}>
+        {["All","Design","Landing Page"].map(t=><button key={t} className={`btn btn-sm ${typeFil===t?"btn-active":"btn-ghost"}`} onClick={()=>setTypeFil(t)}>{t}</button>)}
+        <div style={{marginLeft:"auto",display:"flex",gap:7}}>
+          {["board","list"].map(v=><button key={v} className={`btn btn-sm ${view===v?"btn-active":"btn-ghost"}`} onClick={()=>setView(v)}>{v==="board"?"⊞ Board":"☰ List"}</button>)}
+          <button className="btn btn-primary btn-sm" onClick={()=>setNewOpen(true)}>+ New Ticket</button>
+        </div>
+      </div>
+      {view==="board"?(
+        <div className="tk-board">
+          {BOARD_COLS.map(col=>{
+            const colT=filtered.filter(t=>t.col===col);
+            return(
+              <div key={col}>
+                <div className="tk-col-hd"><span className="tk-col-title">{col}</span><span className="tk-col-ct">{colT.length}</span></div>
+                {colT.map(t=>(
+                  <div key={t.id} className="tk-card" style={{"--tc":t.campColor}} onClick={()=>setSelected(t)}>
+                    <div className="tk-id">
+                      <span>{t.id}</span>
+                      <span style={{fontSize:8.5,fontWeight:700,padding:"1px 6px",borderRadius:2,background:t.type==="Design"?"var(--accent-dim)":"var(--blue-dim)",color:t.type==="Design"?"var(--accent)":"var(--blue)",border:`1px solid ${t.type==="Design"?"rgba(255,69,0,.2)":"rgba(59,130,246,.2)"}`}}>{t.type==="Design"?"Design":"Plat Ops"}</span>
+                      <span style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:3}}><span style={{width:5,height:5,borderRadius:"50%",background:priorityColor(t.priority),display:"inline-block"}}/><span style={{fontSize:8.5,color:priorityColor(t.priority)}}>{t.priority}</span></span>
+                    </div>
+                    <div className="tk-title">{t.title}</div>
+                    <div className="tk-camp"><span className="tk-dot" style={{background:t.campColor}}/>{t.camp}</div>
+                    <div className="tk-foot">
+                      <div className="tk-assignee"><div className="tk-av" style={{background:t.assigneeColor+"22",color:t.assigneeColor}}>{t.assignee}</div>{t.assignee==="—"?"Unassigned":t.assignee}</div>
+                      <span className={`tk-due due-${t.dueStatus}`}>Due {t.due}</span>
+                    </div>
+                  </div>
+                ))}
+                {col==="Open"&&<button className="btn btn-ghost btn-xs" style={{width:"100%",justifyContent:"center",marginTop:3}} onClick={()=>setNewOpen(true)}>+ Add</button>}
+              </div>
+            );
+          })}
+        </div>
+      ):(
+        <div style={{display:"flex",flexDirection:"column",gap:7}}>
+          {filtered.map(t=>(
+            <div key={t.id} className="panel" style={{cursor:"pointer",borderLeft:`3px solid ${t.campColor}`}} onClick={()=>setSelected(t)}>
+              <div style={{display:"flex",alignItems:"center",gap:12,padding:"11px 14px"}}>
+                <div style={{flex:1}}>
+                  <div style={{fontSize:9,color:"var(--dim)",fontWeight:700,letterSpacing:".5px",marginBottom:3}}>{t.id}</div>
+                  <div style={{fontSize:13,fontWeight:500}}>{t.title}</div>
+                  <div style={{fontSize:11,color:"var(--muted)",marginTop:2}}>{t.camp} · {t.requestor}</div>
+                </div>
+                <span className={`pill ${statusCls(t.col)}`} style={{fontSize:8}}>{t.col}</span>
+                <span style={{fontSize:9.5,color:priorityColor(t.priority),fontWeight:600}}>{t.priority}</span>
+                <span className={`tk-due due-${t.dueStatus}`} style={{fontSize:11}}>Due {t.due}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {selected&&(
+        <div className="overlay" onClick={()=>setSelected(null)}>
+          <div className="modal" onClick={e=>e.stopPropagation()}>
+            <div className="modal-hd">
+              <div className="modal-hd-body">
+                <div className="modal-id">{selected.id} · {selected.type} · Req: {selected.requestor}</div>
+                <div className="modal-title">{selected.title}</div>
+                <div style={{display:"flex",gap:7,marginTop:7,alignItems:"center"}}>
+                  <span className={`pill ${statusCls(selected.col)}`}><span className="pill-dot"/>{selected.col}</span>
+                  <span style={{fontSize:10,color:priorityColor(selected.priority),fontWeight:600,display:"flex",alignItems:"center",gap:4}}><span style={{width:5,height:5,borderRadius:"50%",background:priorityColor(selected.priority),display:"inline-block"}}/>{selected.priority} Priority</span>
+                  <span style={{fontSize:10,padding:"2px 8px",borderRadius:3,background:selected.campColor+"18",color:selected.campColor,borderLeft:`2px solid ${selected.campColor}`}}>{selected.camp}</span>
+                </div>
+              </div>
+              <div className="modal-close" onClick={()=>setSelected(null)}>✕</div>
+            </div>
+            <div className="modal-bd">
+              <div className="mfield mb12"><div className="mfield-lbl">Description</div><div className="mfield-val mt">{selected.desc}</div></div>
+              <div style={{fontFamily:"'Syne',sans-serif",fontSize:10,fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",color:"var(--dim)",marginBottom:8}}>Asset Specs ({selected.assets.filter(a=>a.done).length}/{selected.assets.length} complete)</div>
+              <div className="panel" style={{background:"var(--card2)"}}>
+                <div className="panel-bd" style={{padding:"6px 12px"}}>
+                  {selected.assets.map((a,i)=>(
+                    <div key={i} style={{display:"flex",alignItems:"center",gap:9,padding:"6px 0",borderBottom:i<selected.assets.length-1?"1px solid var(--border)":"none"}}>
+                      <div className={`spec-check${a.done?" done":""}`}>{a.done?"✓":""}</div>
+                      <span style={{fontSize:9.5,color:"var(--dim)",width:100,flexShrink:0,fontWeight:600}}>{a.size}</span>
+                      <span style={{flex:1,fontSize:12}}>{a.name}</span>
+                      <span style={{fontSize:10.5,color:a.done?"var(--green)":"var(--dim)"}}>{a.done?"✅ Complete":"⏳ Pending"}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div style={{display:"flex",gap:7,marginTop:14}}>
+                <button className="btn btn-primary btn-sm">Update Status</button>
+                <button className="btn btn-ghost btn-sm">Edit</button>
+                <button className="btn btn-ghost btn-sm">Comment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {newOpen&&<NewTicketModal onClose={()=>setNewOpen(false)}/>}
+    </>
+  );
+}
+
+/* ── NEW TICKET FORM ── */
+const TONE_OPTS=["Bold / High Energy","Clean / Minimal","Lifestyle","Product-Forward","Urgency / Sale","Aspirational","Playful","Premium"];
+const PLACEMENTS=[{ico:"📧",l:"Email"},{ico:"🖥",l:"Display"},{ico:"📱",l:"Paid Social"},{ico:"🌐",l:"Website / LP"},{ico:"💬",l:"SMS"},{ico:"🔗",l:"Affiliate"},{ico:"📺",l:"CTV"},{ico:"🔲",l:"Other"}];
+const STD_SPECS={Display:[{size:"300×250",name:"Rectangle"},{size:"728×90",name:"Leaderboard"},{size:"300×600",name:"Half Page"}],Social:[{size:"1080×1080",name:"IG/FB Feed"},{size:"1080×1920",name:"IG/FB Story"},{size:"1080×1920",name:"TikTok"}],Email:[{size:"600×300",name:"Email Hero Desktop"},{size:"375×200",name:"Email Hero Mobile"}]};
+
+function NewTicketModal({onClose}){
+  const [tab,setTab]=useState("logistics");
+  const [ttype,setTtype]=useState("Design");
+  const [title,setTitle]=useState("");
+  const [campaign,setCampaign]=useState("");
+  const [priority,setPriority]=useState("High");
+  const [assignee,setAssignee]=useState("Unassigned");
+  const [tones,setTones]=useState([]);
+  const [placements,setPlacements]=useState([]);
+  const [specs,setSpecs]=useState([]);
+  const [uploads,setUploads]=useState([]);
+  const toggleTone=t=>setTones(s=>s.includes(t)?s.filter(x=>x!==t):[...s,t]);
+  const togglePlacement=p=>setPlacements(s=>s.includes(p)?s.filter(x=>x!==p):[...s,p]);
+  const loadSpecs=k=>setSpecs(STD_SPECS[k].map((s,i)=>({...s,id:i,done:false})));
+  const addSpec=()=>setSpecs(s=>[...s,{id:Date.now(),size:"",name:"",done:false}]);
+  const removeSpec=id=>setSpecs(s=>s.filter(x=>x.id!==id));
+  const updateSpec=(id,f,v)=>setSpecs(s=>s.map(x=>x.id===id?{...x,[f]:v}:x));
+  const TABS=[{id:"logistics",l:"📋 Logistics"},{id:"creative",l:"🎨 Creative"},{id:"specs",l:"📐 Specs"},{id:"placement",l:"📍 Placement"},{id:"uploads",l:"📁 Files"}];
+  return(
+    <div className="overlay" onClick={onClose}>
+      <div className="modal" style={{maxWidth:820,height:"90vh",display:"flex",flexDirection:"column"}} onClick={e=>e.stopPropagation()}>
+        <div style={{padding:"16px 20px",borderBottom:"1px solid var(--border)",background:"var(--surface)",flexShrink:0}}>
+          <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontSize:18,fontWeight:800,flex:1}}>{title||"New Ticket"}</div>
+            <button className="btn btn-ghost btn-sm" onClick={onClose}>Cancel</button>
+            <button className="btn btn-primary btn-sm" onClick={onClose}>Submit Ticket</button>
+          </div>
+          <div style={{display:"flex",gap:8}}>
+            {[{id:"Design",l:"🎨 Creative / Ad Hoc Design",s:"Banners, social, email assets"},{id:"Landing Page",l:"🌐 Platform Ops — Landing Page",s:"URL builds, promo pages"}].map(t=>(
+              <div key={t.id} onClick={()=>setTtype(t.id)} style={{flex:1,padding:"8px 12px",borderRadius:"var(--r)",border:`1px solid ${ttype===t.id?"var(--accent)":"var(--border)"}`,background:ttype===t.id?"var(--accent-dim)":"var(--card2)",cursor:"pointer"}}>
+                <div style={{fontSize:12,fontWeight:600,color:ttype===t.id?"var(--accent)":"var(--text)"}}>{t.l}</div>
+                <div style={{fontSize:10.5,color:"var(--muted)",marginTop:1}}>{t.s}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{background:"var(--surface)",borderBottom:"1px solid var(--border)",flexShrink:0}}>
+          <div className="tab-nav">{TABS.map(t=><div key={t.id} className={`tab${tab===t.id?" active":""}`} onClick={()=>setTab(t.id)}>{t.l}</div>)}</div>
+        </div>
+        <div style={{flex:1,overflow:"hidden",display:"grid",gridTemplateColumns:"1fr 240px"}}>
+          <div style={{overflowY:"auto",padding:"18px 20px"}}>
+            {tab==="logistics"&&(
+              <>
+                <div style={{display:"grid",gridTemplateColumns:"1fr",gap:9,marginBottom:9}}>
+                  <div className="ffield"><div className="ffield-lbl">Title *</div><input className="ffield-input" placeholder="e.g. Spring Guitar Sale — Social Assets" value={title} onChange={e=>setTitle(e.target.value)}/></div>
+                </div>
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:9}}>
+                  <div className="ffield"><div className="ffield-lbl">Campaign *</div><select className="ffield-select" value={campaign} onChange={e=>setCampaign(e.target.value)}><option value="">Select…</option>{CAMPAIGNS.map(c=><option key={c.name}>{c.name}</option>)}</select></div>
+                  <div className="ffield"><div className="ffield-lbl">Priority *</div><select className="ffield-select" value={priority} onChange={e=>setPriority(e.target.value)}>{["Urgent","High","Medium","Low"].map(p=><option key={p}>{p}</option>)}</select></div>
+                  <div className="ffield"><div className="ffield-lbl">Assign To</div><select className="ffield-select" value={assignee} onChange={e=>setAssignee(e.target.value)}>{["KL — Kayla L.","MR — Marcus R.","JT — Jordan T.","Unassigned"].map(t=><option key={t}>{t}</option>)}</select></div>
+                  <div className="ffield"><div className="ffield-lbl">Due Date *</div><input className="ffield-input" placeholder="e.g. Mar 20, 2026"/></div>
+                  <div className="ffield"><div className="ffield-lbl">Campaign Live Date</div><input className="ffield-input" placeholder="e.g. Mar 22, 2026"/></div>
+                  <div className="ffield"><div className="ffield-lbl">Requested By</div><input className="ffield-input" defaultValue="Jamie R."/></div>
+                </div>
+                {ttype==="Landing Page"&&(
+                  <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9}}>
+                    <div className="ffield"><div className="ffield-lbl">Target URL / Slug</div><input className="ffield-input" placeholder="/spring-guitar-sale"/></div>
+                    <div className="ffield"><div className="ffield-lbl">Promo Code</div><input className="ffield-input" placeholder="SPRING30"/></div>
+                    <div className="ffield"><div className="ffield-lbl">Redirect From</div><input className="ffield-input" placeholder="/guitars/sale"/></div>
+                    <div className="ffield"><div className="ffield-lbl">Takedown Date</div><input className="ffield-input" placeholder="Apr 2, 2026"/></div>
+                    <div className="ffield" style={{gridColumn:"1/-1"}}><div className="ffield-lbl">Page Requirements</div><textarea className="ffield-input" rows={2} placeholder="Structure, modules, countdown timer, eligibility rules…"/></div>
+                  </div>
+                )}
+              </>
+            )}
+            {tab==="creative"&&(
+              <>
+                <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Campaign Objective</div><textarea className="ffield-input" rows={3} placeholder="What should this creative communicate? What action do we want the customer to take?"/></div>
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:9}}>
+                  <div className="ffield"><div className="ffield-lbl">Headline / Offer Copy</div><input className="ffield-input" placeholder="e.g. Up to 30% off guitars"/></div>
+                  <div className="ffield"><div className="ffield-lbl">CTA Text</div><input className="ffield-input" placeholder="e.g. Shop the Sale"/></div>
+                </div>
+                <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Body Copy / Sub-copy Notes</div><textarea className="ffield-input" rows={2} placeholder="Supporting copy, disclaimers, sub-headlines…"/></div>
+                <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Tone & Visual Direction</div><div style={{display:"flex",flexWrap:"wrap",marginTop:6}}>{TONE_OPTS.map(t=><span key={t} className={`tchip${tones.includes(t)?" on":""}`} onClick={()=>toggleTone(t)}>{t}</span>)}</div></div>
+                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:9}}>
+                  <div className="ffield"><div className="ffield-lbl">Color / Brand Direction</div><textarea className="ffield-input" rows={2} placeholder="Use MF brand red. Dark background. Avoid pastels…"/></div>
+                  <div className="ffield"><div className="ffield-lbl">Reference / Inspiration</div><textarea className="ffield-input" rows={2} placeholder="Links to past creative, mood boards…"/></div>
+                </div>
+                <div className="ffield"><div className="ffield-lbl">Featured Products / SKUs</div><textarea className="ffield-input" rows={2} placeholder="Gibson L-1 Anniversary (SKU 123456), Fender Player Strat (SKU 789012)…"/></div>
+              </>
+            )}
+            {tab==="specs"&&(
+              <>
+                {specs.length===0&&(
+                  <div style={{marginBottom:14}}>
+                    <div style={{fontSize:12,color:"var(--muted)",marginBottom:9}}>Load a standard spec set or start blank:</div>
+                    <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
+                      {Object.keys(STD_SPECS).map(k=><button key={k} className="btn btn-ghost btn-sm" onClick={()=>loadSpecs(k)}>{k==="Display"?"🖥":k==="Social"?"📱":"📧"} {k} Set</button>)}
+                      <button className="btn btn-ghost btn-sm" onClick={addSpec}>+ Start blank</button>
+                    </div>
+                  </div>
+                )}
+                {specs.length>0&&(
+                  <>
+                    <div className="panel" style={{marginBottom:9}}>
+                      <table className="spec-table">
+                        <thead><tr><th style={{width:28}}>✓</th><th style={{width:110}}>Size</th><th>Asset Name</th><th style={{width:90}}>Format</th><th style={{width:24}}></th></tr></thead>
+                        <tbody>
+                          {specs.map(s=>(
+                            <tr key={s.id}>
+                              <td><div className={`spec-check${s.done?" done":""}`} onClick={()=>updateSpec(s.id,"done",!s.done)}>{s.done?"✓":""}</div></td>
+                              <td><input className="spec-input" value={s.size} onChange={e=>updateSpec(s.id,"size",e.target.value)} placeholder="300×250"/></td>
+                              <td><input className="spec-input" value={s.name} onChange={e=>updateSpec(s.id,"name",e.target.value)} placeholder="Asset description…"/></td>
+                              <td><select className="spec-input" style={{cursor:"pointer"}}><option>.jpg</option><option>.png</option><option>.gif</option><option>.mp4</option><option>.psd</option></select></td>
+                              <td><span style={{color:"var(--dim)",cursor:"pointer",fontSize:13,padding:"0 3px"}} onClick={()=>removeSpec(s.id)}>✕</span></td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      <div style={{padding:"6px 10px",borderTop:"1px solid var(--border)"}}><button className="btn btn-ghost btn-xs" onClick={addSpec}>+ Add spec</button></div>
+                    </div>
+                    <div className="ffield"><div className="ffield-lbl">Additional Notes</div><textarea className="ffield-input" rows={2} placeholder="Animation specs, safe zones, file naming, accessibility…"/></div>
+                  </>
+                )}
+              </>
+            )}
+            {tab==="placement"&&(
+              <>
+                <div style={{fontSize:11,color:"var(--muted)",marginBottom:10}}>Select all the places these assets will be used:</div>
+                <div className="placement-grid">
+                  {PLACEMENTS.map(p=>(
+                    <div key={p.l} className={`placement-opt${placements.includes(p.l)?" on":""}`} onClick={()=>togglePlacement(p.l)}>
+                      <div className="placement-opt-ico">{p.ico}</div>
+                      <div className="placement-opt-lbl">{p.l}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Campaign Type Tags</div><div style={{display:"flex",flexWrap:"wrap",marginTop:5}}>{["Tentpole","Seasonal","Sweepstakes","Brand","Product Launch","Clearance","Winback"].map(t=>{const [on,setOn]=useState(false);return<span key={t} className={`tchip${on?" on":""}`} onClick={()=>setOn(s=>!s)}>{t}</span>;})}</div></div>
+                <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Category Tags</div><div style={{display:"flex",flexWrap:"wrap",marginTop:5}}>{["Guitars","Drums","Keys/Synths","Live Sound","Recording","Accessories"].map(t=>{const [on,setOn]=useState(false);return<span key={t} className={`tchip${on?" on-blue":""}`} onClick={()=>setOn(s=>!s)}>{t}</span>;})}</div></div>
+              </>
+            )}
+            {tab==="uploads"&&(
+              <>
+                <div className="upload-zone" style={{marginBottom:12}} onClick={()=>setUploads(u=>[...u,{name:`reference-file-${u.length+1}.png`,size:"2.4 MB"}])}>
+                  <div style={{fontSize:24,marginBottom:6}}>☁</div>
+                  <div style={{fontSize:12.5,fontWeight:500,marginBottom:2}}>Drop reference files or click to upload</div>
+                  <div style={{fontSize:11,color:"var(--muted)"}}>Brand assets, past creative, mood boards · Max 50MB</div>
+                </div>
+                {uploads.map((f,i)=>(
+                  <div key={i} className="upload-file">
+                    <span style={{fontSize:15}}>🗂</span><span style={{flex:1,fontSize:12}}>{f.name}</span><span style={{fontSize:10.5,color:"var(--muted)"}}>{f.size}</span><span style={{fontSize:10.5,color:"var(--green)"}}>✅ Uploaded</span>
+                  </div>
+                ))}
+                <div style={{border:"2px dashed rgba(16,185,129,.22)",borderRadius:"var(--r)",padding:16,textAlign:"center",marginTop:14}}>
+                  <div style={{fontSize:18,marginBottom:5}}>📤</div>
+                  <div style={{fontSize:12,fontWeight:500,color:"var(--green)",marginBottom:2}}>Designer Finals Upload Zone</div>
+                  <div style={{fontSize:11,color:"var(--muted)",marginBottom:10}}>Designer uploads approved final assets here</div>
+                  <button className="btn btn-sm" style={{background:"var(--green-dim)",color:"var(--green)",border:"1px solid rgba(16,185,129,.25)"}}>Upload Finals</button>
+                </div>
+              </>
+            )}
+          </div>
+          <div style={{borderLeft:"1px solid var(--border)",background:"var(--surface)",overflowY:"auto",padding:"16px 14px"}}>
+            <div style={{fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",color:"var(--dim)",marginBottom:10}}>Status</div>
+            <div className="status-track">
+              {["Submitted","In Progress","In Review","Approved","Complete"].map((s,i)=>(
+                <div key={s} className="status-step">
+                  <div className={`status-dot${i===0?" done":i===1?" active":""}`}>{i===0&&"✓"}</div>
+                  <div><div className="status-step-lbl" style={{color:i===0?"var(--green)":i===1?"var(--accent)":"var(--muted)"}}>{s}</div>{i<=1&&<div className="status-step-date">{i===0?"Just now":"Awaiting assignment"}</div>}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{height:1,background:"var(--border)",margin:"14px 0"}}/>
+            <div style={{fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",color:"var(--dim)",marginBottom:9}}>Summary</div>
+            {[["Type",ttype==="Design"?"🎨 Design":"🌐 Plat Ops"],["Campaign",campaign||"—"],["Priority",priority],["Specs",specs.length>0?`${specs.length} assets`:"None yet"],["Placements",placements.length>0?placements.join(", "):"None"]].map(([l,v])=>(
+              <div key={l} style={{marginBottom:8}}>
+                <div style={{fontSize:9,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1px",marginBottom:2}}>{l}</div>
+                <div style={{fontSize:11.5,color:"var(--text)"}}>{v}</div>
+              </div>
+            ))}
+            <div style={{height:1,background:"var(--border)",margin:"14px 0"}}/>
+            <div style={{fontSize:9,fontWeight:700,textTransform:"uppercase",letterSpacing:"1.5px",color:"var(--dim)",marginBottom:7}}>Comment</div>
+            <textarea style={{background:"var(--card2)",border:"1px solid var(--border)",borderRadius:"var(--r)",padding:"8px 10px",color:"var(--text)",fontFamily:"'DM Sans',sans-serif",fontSize:11.5,width:"100%",resize:"none",outline:"none",minHeight:70,lineHeight:1.5}} placeholder="Notes for the designer…"/>
+            <button className="btn btn-ghost btn-xs" style={{marginTop:5,width:"100%",justifyContent:"center"}}>Post Comment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── TASKS ── */
+function Tasks(){
+  const [tasks,setTasks]=useState(TASKS_DATA);
+  const [roleFil,setRoleFil]=useState("All");
+  const [addOpen,setAddOpen]=useState(false);
+  const [newTask,setNewTask]=useState({text:"",campaign:"",role:"Marketing",due:"",owner:""});
+  const [tagInput,setTagInput]=useState("");
+  const [tags,setTags]=useState([]);
+  const [showSug,setShowSug]=useState(false);
+
+  const TEAM=["@Jamie R.","@Kayla L.","@Marcus R.","@Jordan T.","@Sam P.","@Alex M."];
+  const CAMPAIGNS_T=["Spring Guitar Sale","NAMM Gear Drop","Drum Kit Blowout","Easter Weekend Deals"];
+  const roles=["All","Marketing","Design","Web","Analytics","Director"];
+  const filtered=roleFil==="All"?tasks:tasks.filter(t=>t.role===roleFil);
+  const toggle=id=>setTasks(ts=>ts.map(t=>t.id===id?{...t,done:!t.done}:t));
+  const removeTask=id=>setTasks(ts=>ts.filter(t=>t.id!==id));
+
+  const handleTagKey=e=>{
+    if(e.key===" "||e.key==="Enter"){
+      const v=tagInput.trim();
+      if(v){setTags(t=>[...t,v]);setTagInput("");}
+      e.preventDefault();
+    } else if(e.key==="Backspace"&&!tagInput&&tags.length){
+      setTags(t=>t.slice(0,-1));
+    }
+  };
+
+  const addMention=m=>{
+    setTags(t=>[...t,m]);
+    setTagInput("");
+    setShowSug(false);
+  };
+
+  const submitTask=()=>{
+    if(!newTask.text.trim()) return;
+    const allTags=tags;
+    const mentions=allTags.filter(t=>t.startsWith("@"));
+    const hashTags=allTags.filter(t=>t.startsWith("#"));
+    setTasks(ts=>[...ts,{
+      id:Date.now(),
+      text:newTask.text,
+      campaign:newTask.campaign||"General",
+      role:newTask.role,
+      due:newTask.due||"TBD",
+      owner:mentions[0]||"Unassigned",
+      ownerColor:"#FF4500",
+      dueStatus:"ok",
+      done:false,
+      tags:allTags
+    }]);
+    setNewTask({text:"",campaign:"",role:"Marketing",due:"",owner:""});
+    setTags([]);
+    setTagInput("");
+    setAddOpen(false);
+  };
+
+  const atSuggestions=tagInput.startsWith("@")?TEAM.filter(m=>m.toLowerCase().includes(tagInput.toLowerCase())):[];
+
+  return(
+    <>
+      <div className="kpi-grid g2 mb16">
+        {[{l:"Open Tasks",v:tasks.filter(t=>!t.done).length,c:"#FF4500"},{l:"Completed",v:tasks.filter(t=>t.done).length,c:"#10B981"}].map((k,i)=>(
+          <div className="kpi" key={i}><div style={{position:"absolute",top:0,left:0,right:0,height:"2px",background:k.c}}/><div className="kpi-lbl">{k.l}</div><div className="kpi-val">{k.v}</div></div>
+        ))}
+      </div>
+      <div style={{display:"flex",gap:7,marginBottom:14,alignItems:"center",flexWrap:"wrap"}}>
+        {roles.map(r=><button key={r} className={`btn btn-sm ${roleFil===r?"btn-active":"btn-ghost"}`} onClick={()=>setRoleFil(r)}>{r}</button>)}
+        <button className="btn btn-primary btn-sm" style={{marginLeft:"auto"}} onClick={()=>setAddOpen(true)}>+ Add Task</button>
+      </div>
+
+      {addOpen&&(
+        <div className="panel" style={{marginBottom:14,padding:16}}>
+          <div style={{fontSize:11,fontWeight:700,textTransform:"uppercase",letterSpacing:"1px",color:"var(--dim)",marginBottom:10}}>New Task</div>
+          <textarea
+            className="ffield-input"
+            rows={2}
+            placeholder="Describe the task…"
+            value={newTask.text}
+            onChange={e=>setNewTask(p=>({...p,text:e.target.value}))}
+            style={{marginBottom:9,width:"100%"}}
+          />
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8,marginBottom:9}}>
+            <div className="ffield"><div className="ffield-lbl">Campaign</div>
+              <select className="ffield-select" value={newTask.campaign} onChange={e=>setNewTask(p=>({...p,campaign:e.target.value}))}>
+                <option value="">— None —</option>
+                {CAMPAIGNS_T.map(c=><option key={c}>{c}</option>)}
+              </select>
+            </div>
+            <div className="ffield"><div className="ffield-lbl">Team / Role</div>
+              <select className="ffield-select" value={newTask.role} onChange={e=>setNewTask(p=>({...p,role:e.target.value}))}>
+                {["Marketing","Design","Web","Analytics","Director"].map(r=><option key={r}>{r}</option>)}
+              </select>
+            </div>
+            <div className="ffield"><div className="ffield-lbl">Due Date</div>
+              <input className="ffield-input" placeholder="e.g. Mar 20" value={newTask.due} onChange={e=>setNewTask(p=>({...p,due:e.target.value}))}/>
+            </div>
+          </div>
+          <div className="ffield" style={{marginBottom:10,position:"relative"}}>
+            <div className="ffield-lbl">Tags & Mentions — type @ to mention someone, # for a topic, Space to add</div>
+            <div style={{display:"flex",flexWrap:"wrap",gap:5,padding:"6px 10px",background:"var(--card2)",border:"1px solid var(--border2)",borderRadius:"var(--r)",minHeight:38,alignItems:"center"}}>
+              {tags.map((t,i)=>(
+                <span key={i} style={{display:"inline-flex",alignItems:"center",gap:4,padding:"2px 8px",borderRadius:20,background:t.startsWith("@")?"#FF450022":"#3B82F622",color:t.startsWith("@")?"#FF4500":"#60a5fa",fontSize:11,fontWeight:600}}>
+                  {t}<span style={{cursor:"pointer",opacity:.6}} onClick={()=>setTags(tg=>tg.filter((_,j)=>j!==i))}>✕</span>
+                </span>
+              ))}
+              <input
+                style={{border:"none",background:"transparent",outline:"none",color:"var(--text)",fontFamily:"inherit",fontSize:12,minWidth:120,flex:1}}
+                placeholder={tags.length===0?"@mention or #tag…":""}
+                value={tagInput}
+                onChange={e=>{setTagInput(e.target.value);setShowSug(e.target.value.startsWith("@"));}}
+                onKeyDown={handleTagKey}
+              />
+            </div>
+            {showSug&&atSuggestions.length>0&&(
+              <div style={{position:"absolute",top:"100%",left:0,right:0,background:"var(--card)",border:"1px solid var(--border)",borderRadius:"var(--r)",zIndex:99,overflow:"hidden"}}>
+                {atSuggestions.map(m=>(
+                  <div key={m} style={{padding:"8px 12px",cursor:"pointer",fontSize:12,color:"var(--text)"}} onClick={()=>addMention(m)}
+                    onMouseEnter={e=>e.target.style.background="var(--card2)"}
+                    onMouseLeave={e=>e.target.style.background="transparent"}>
+                    {m}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div style={{display:"flex",gap:8}}>
+            <button className="btn btn-ghost btn-sm" onClick={()=>{setAddOpen(false);setTags([]);setTagInput("");}}>Cancel</button>
+            <button className="btn btn-primary btn-sm" onClick={submitTask} disabled={!newTask.text.trim()}>Add Task</button>
+          </div>
+        </div>
+      )}
+
+      <div className="panel">
+        <div className="panel-bd" style={{padding:"4px 14px"}}>
+          {filtered.length===0&&<div style={{padding:"20px 0",textAlign:"center",color:"var(--dim)",fontSize:12}}>No tasks in this category</div>}
+          {filtered.map((t,i)=>(
+            <div key={t.id} className="task-item">
+              <div className={`task-check${t.done?" done":""}`} onClick={()=>toggle(t.id)}>{t.done?"✓":""}</div>
+              <div style={{flex:1}}>
+                <div className={`task-txt${t.done?" done":""}`}>{t.text}</div>
+                <div style={{display:"flex",gap:5,flexWrap:"wrap",marginTop:3,alignItems:"center"}}>
+                  {t.campaign&&<span style={{fontSize:10,color:"var(--muted)"}}>{t.campaign}</span>}
+                  {(t.tags||[]).map((tg,j)=>(
+                    <span key={j} style={{fontSize:10,padding:"1px 6px",borderRadius:20,background:tg.startsWith("@")?"#FF450018":"#3B82F618",color:tg.startsWith("@")?"#FF4500":"#60a5fa",fontWeight:600}}>{tg}</span>
+                  ))}
+                </div>
+              </div>
+              <span className="task-owner" style={{borderLeft:`2px solid ${t.ownerColor||"#666"}`,background:"transparent"}}>{t.owner}</span>
+              <span className={`task-due due-${t.dueStatus}`}>{t.due}</span>
+              <span onClick={()=>removeTask(t.id)} style={{color:"var(--dim)",cursor:"pointer",fontSize:12,padding:"0 2px"}}>✕</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ── AUTOMATION ── */
+function Automation(){
+  const [rules,setRules]=useState(RULES_DATA);
+  const toggle=i=>setRules(rs=>rs.map((r,j)=>j===i?{...r,on:!r.on}:r));
+  return(
+    <>
+      <div className="kpi-grid g3 mb20">
+        {[{l:"Active Rules",v:rules.filter(r=>r.on).length,c:"#10B981"},{l:"Paused Rules",v:rules.filter(r=>!r.on).length,c:"#6B7280"},{l:"Actions (30d)",v:"42",c:"#3B82F6"}].map((k,i)=>(
+          <div className="kpi" key={i} ><div style={{position:"absolute",top:0,left:0,right:0,height:"2px",background:k.c}}/>  <div className="kpi-lbl">{k.l}</div><div className="kpi-val">{k.v}</div></div>
+        ))}
+      </div>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+        <div style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:14}}>Automation Rules</div>
+        <button className="btn btn-primary btn-sm">+ New Rule</button>
+      </div>
+      {rules.map((r,i)=>(
+        <div key={i} className="rule-card">
+          <div className={`rule-toggle ${r.on?"on":"off"}`} onClick={()=>toggle(i)}><div className="rule-pip"/></div>
+          <div style={{flex:1}}>
+            <div className="rule-title">{r.title}</div>
+            <div className="rule-desc">{r.desc}</div>
+            <div style={{marginTop:4}}><span className="rule-trigger">⚡ {r.trigger}</span><span className="rule-action">→ {r.action}</span></div>
+          </div>
+        </div>
+      ))}
+      <div className="ai-panel panel" style={{marginTop:8}}>
+        <div className="panel-hd" style={{borderBottom:"1px solid rgba(139,92,246,.15)"}}><div className="panel-title" style={{color:"#a78bfa"}}>🤖 AI-Suggested Automations</div></div>
+        <div className="panel-bd" style={{fontSize:12,color:"var(--muted)",lineHeight:1.65}}>
+          Based on your team's patterns, AI has 3 additional recommendations: a weekly Monday digest, a pre-launch 5-day checklist trigger, and a post-campaign archive workflow.
+          <div style={{marginTop:10}}><button className="btn btn-violet btn-sm">Review & Enable Suggestions</button></div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ── AI ASSISTANT ── */
+function AIAssistant(){
+  const [chat,setChat]=useState(CHAT_INIT);
+  const [input,setInput]=useState("");
+  const [loading,setLoading]=useState(false);
+  const QUICK=["What's our best Q4 performer?","Find calendar gaps in April","Draft Spring Guitar email subject lines","Summarize Drum Kit Blowout performance","What campaigns need design tickets?"];
+  const send=(msg)=>{
+    if(!msg.trim()) return;
+    setChat(c=>[...c,{role:"user",text:msg}]);
+    setInput("");
+    setLoading(true);
+    setTimeout(()=>{
+      setChat(c=>[...c,{role:"ai",text:"Based on your current promotional calendar and past performance data, here's what I found: The Drum Kit Blowout is your strongest active campaign at 23% above CTR benchmarks. For Spring Guitar Sale, I recommend a 3-touch email drip — launch, mid-point urgency, and last-chance — similar to the Holiday Bundle structure from Q4 which drove $2.1M. Want me to generate the full campaign brief or draft the email subject lines?"}]);
+      setLoading(false);
+    },900);
+  };
+  return(
+    <div style={{maxWidth:740}}>
+      <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:16}}>
+        {QUICK.map(q=><button key={q} className="btn btn-ghost btn-sm" onClick={()=>send(q)} style={{fontSize:11}}>{q}</button>)}
+      </div>
+      <div className="panel">
+        <div className="panel-hd"><div className="panel-title" style={{color:"#a78bfa"}}>🤖 Promo Intelligence — AI Assistant</div></div>
+        <div className="panel-bd">
+          <div className="chat-wrap">
+            <div className="chat-msgs">
+              {chat.map((m,i)=>(
+                <div key={i} className={`chat-bubble ${m.role}`}>
+                  {m.role==="ai"&&<div className="chat-sender">Promo AI</div>}
+                  {m.text}
+                </div>
+              ))}
+              {loading&&<div className="chat-bubble ai"><div className="chat-sender">Promo AI</div><span style={{color:"var(--dim)"}}>Thinking…</span></div>}
+            </div>
+            <div className="chat-input-row">
+              <input className="chat-input" value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send(input)} placeholder="Ask about campaigns, gaps, copy, performance, tickets…"/>
+              <button className="chat-send" onClick={()=>send(input)}>↑</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── PERFORMANCE ── */
+function Performance(){
+  return(
+    <>
+      <div className="kpi-grid g4 mb20">
+        {[{l:"YTD Rev (Promo)",v:"$8.4M",s:<span className="kpi-up">↑ 21% YoY</span>,c:"#10B981"},{l:"Avg Email OR",v:"31.2%",s:"Industry avg: 22%",c:"#FF4500"},{l:"Avg CTR",v:"6.8%",s:"Up from 5.1% last year",c:"#F59E0B"},{l:"Campaigns Live",v:"12",s:"3 more than Q1 '25",c:"#3B82F6"}].map((k,i)=>(
+          <div className="kpi" key={i} ><div style={{position:"absolute",top:0,left:0,right:0,height:"2px",background:k.c}}/>  <div className="kpi-lbl">{k.l}</div><div className="kpi-val">{k.v}</div><div className="kpi-sub">{k.s}</div></div>
+        ))}
+      </div>
+      <div className="g-main">
+        <div>
+          <div className="panel mb16">
+            <div className="panel-hd"><div className="panel-title">Campaign Performance vs Benchmark</div></div>
+            <div className="panel-bd">
+              {[{l:"Drum Kit Blowout",v:91,c:"#10B981"},{l:"Acoustic Sale",v:78,c:"#F59E0B"},{l:"Winback Launch",v:45,c:"#8B5CF6"},{l:"Spring Guitar Sale (Proj.)",v:72,c:"#FF4500"},{l:"Holiday Bundle Q4 '25",v:96,c:"#3B82F6"}].map((p,i)=>(
+                <div key={i} className="perf-row">
+                  <div className="perf-hdr"><span>{p.l}</span><span>{p.v}%</span></div>
+                  <div className="perf-track"><div className="perf-fill" style={{width:`${p.v}%`,background:p.c}}/></div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="panel">
+            <div className="panel-hd"><div className="panel-title">Email Performance by Campaign</div></div>
+            <div style={{overflowX:"auto"}}>
+              <table className="ec-table">
+                <thead><tr><th>Campaign</th><th>Sends</th><th>Avg OR</th><th>Avg CTR</th><th>Rev Attributed</th><th>vs Benchmark</th></tr></thead>
+                <tbody>
+                  {PERF_DATA.map((p,i)=>(
+                    <tr key={i}>
+                      <td><div style={{display:"flex",alignItems:"center",gap:7}}><div style={{width:8,height:8,borderRadius:2,background:p.color,flexShrink:0}}/>{p.camp}</div></td>
+                      <td style={{color:"var(--muted)"}}>{p.camp==="Drum Kit Blowout"?"4":p.camp==="Acoustic Sale"?"6":p.camp==="Winback Launch"?"3":"Scheduled"}</td>
+                      <td><span className={p.or!=="—"?(parseFloat(p.or)>28?"ec-good":"ec-avg"):"ec-blank"}>{p.or}</span></td>
+                      <td><span className={p.ctr!=="—"?(parseFloat(p.ctr)>4?"ec-good":"ec-avg"):"ec-blank"}>{p.ctr}</span></td>
+                      <td style={{fontWeight:500}}>{p.rev}</td>
+                      <td>
+                        {p.vs>0&&<div style={{display:"flex",alignItems:"center",gap:6}}>
+                          <div style={{flex:1,height:4,background:"var(--border)",borderRadius:2,overflow:"hidden",minWidth:60}}><div style={{width:`${p.vs}%`,height:"100%",background:p.color,borderRadius:2}}/></div>
+                          <span style={{fontSize:10.5,color:p.vs>70?"var(--green)":p.vs>50?"var(--amber)":"var(--rose)",fontWeight:600}}>{p.vs}%</span>
+                        </div>}
+                        {p.vs===0&&<span className="ec-blank">—</span>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div className="ai-panel panel" style={{height:"fit-content"}}>
+          <div className="panel-hd" style={{borderBottom:"1px solid rgba(139,92,246,.15)"}}><div className="panel-title" style={{color:"#a78bfa"}}>🤖 Performance AI</div></div>
+          <div className="panel-bd" style={{padding:"12px 14px"}}>
+            {[{icon:"📈",title:"Top performer",text:"Drum Kit Blowout is your strongest Q1 campaign — 23% above CTR benchmark."},{icon:"⚠️",title:"Winback underperformed",text:"18.2% OR is below the 25% threshold. Recommend audience refinement."},{icon:"💡",title:"Spring Guitar prediction",text:"Based on historical data, Spring Guitar is projected to hit $720K–$890K. Consider extending 5 days."}].map((ins,i)=>(
+              <div key={i} className="ai-ins"><span className="ai-ins-icon">{ins.icon}</span><div><div className="ai-ins-title">{ins.title}</div><div className="ai-ins-text">{ins.text}</div></div></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ══════════════════════════════════════════
+   APP SHELL
+══════════════════════════════════════════ */
+const NAV_GROUPS=[
+  {label:"Core",items:[{id:"dashboard",icon:"⬛",label:"Dashboard"},{id:"calendar",icon:"📅",label:"Promo Calendar"},{id:"campaigns",icon:"📋",label:"Campaigns",badge:"4"}]},
+  {label:"Email",items:[{id:"email",icon:"📧",label:"Email Cadence",live:true}]},
+  {label:"Workflow",items:[{id:"tickets",icon:"🎫",label:"Tickets",badge:"3"},{id:"tasks",icon:"✅",label:"Tasks",badge:"6"},{id:"automation",icon:"⚡",label:"Automation"}]},
+  {label:"Insights",items:[{id:"performance",icon:"📊",label:"Performance"},{id:"ai",icon:"🤖",label:"AI Assistant"}]},
+];
+const PAGE_TITLES={dashboard:"Dashboard",calendar:"Promo Calendar",campaigns:"Campaigns","campaign-detail":"Campaign",email:"Email Cadence",tickets:"Tickets",tasks:"Tasks",automation:"Automation",performance:"Performance",ai:"AI Assistant"};
+
+function App(){
+  const [nav,setNav]=useState("dashboard");
+  const [camp,setCamp]=useState(null);
+  const [campaigns,setCampaigns]=useState(CAMPAIGNS);
+  const [newCampOpen,setNewCampOpen]=useState(false);
+  const COLORS_NC=["#FF4500","#F59E0B","#10B981","#3B82F6","#8B5CF6","#F43F5E","#06B6D4","#84CC16"];
+  const blankCamp={name:"",start:"",end:"",color:"#FF4500",status:"scheduled",owner:"",target:"",goal:"",offer:"",audience:"",channels:[],tags:[],assets:[],timeline:[]};
+  const [newCamp,setNewCamp]=useState(blankCamp);
+
+  const updateCampaign=(updated)=>{setCampaigns(cs=>cs.map(c=>c.id===updated.id?updated:c));setCamp(updated);};
+  const updateCampaigns=(newList)=>setCampaigns(newList);
+  const saveNewCamp=()=>{
+    if(!newCamp.name||!newCamp.start||!newCamp.end) return;
+    const nc={...newCamp,id:Date.now()};
+    setCampaigns(cs=>[...cs,nc]);
+    setNewCamp(blankCamp);
+    setNewCampOpen(false);
+    setCamp(nc);
+    setNav("campaign-detail");
+  };
+
+  const title=()=>{
+    if(nav==="campaign-detail"&&camp) return <><span className="tb-crumb" onClick={()=>setNav("campaigns")}>Campaigns</span><span className="tb-sep">/</span><span style={{fontSize:12,color:"var(--text)"}}>{camp.name}</span></>;
+    return PAGE_TITLES[nav]||nav;
+  };
+
+  return(
+    <>
+      <div className="app">
+        <div className="sb">
+          <div className="sb-logo">
+            <div className="sb-mark"><span className="sb-pip"/>MF Promo Hub</div>
+            <div className="sb-sub">Musicians Friend</div>
+          </div>
+          <nav className="sb-nav">
+            {NAV_GROUPS.map(g=>(
+              <div className="sb-grp" key={g.label}>
+                <div className="sb-grp-lbl">{g.label}</div>
+                {g.items.map(item=>(
+                  <div key={item.id} className={`sb-item${(nav===item.id||(nav==="campaign-detail"&&item.id==="campaigns"))?" active":""}`} onClick={()=>setNav(item.id)}>
+                    <span className="sb-ico">{item.icon}</span>
+                    {item.label}
+                    {item.badge&&<span className="sb-badge">{item.badge}</span>}
+                    {item.live&&<span className="sb-live">LIVE</span>}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </nav>
+          <div className="sb-user">
+            <div className="sb-av">JR</div>
+            <div><div className="sb-un">Jamie R.</div><div className="sb-ur">Campaign Manager</div></div>
+          </div>
+        </div>
+        <div className="main">
+          <div className="topbar">
+            <div className="tb-title">{title()}</div>
+            <span style={{fontSize:11,color:"var(--muted)"}}>March 2026</span>
+            {nav==="email"&&<span style={{fontSize:10.5,color:"var(--green)",display:"flex",alignItems:"center",gap:4}}><span style={{width:5,height:5,borderRadius:"50%",background:"var(--green)"}}/> Synced</span>}
+            <button className="btn btn-ghost btn-sm">Export</button>
+            <button className="btn btn-primary btn-sm" onClick={()=>setNewCampOpen(true)}>+ New Campaign</button>
+          </div>
+          <div className="page">
+            {nav==="dashboard"&&<Dashboard setNav={setNav} setCamp={setCamp} campaigns={campaigns}/>}
+            {nav==="calendar"&&<PromoCalendar setNav={setNav} setCamp={setCamp} campaigns={campaigns} onUpdateCampaigns={updateCampaigns}/>}
+            {nav==="campaigns"&&<CampaignsList setNav={setNav} setCamp={setCamp} campaigns={campaigns} setNewCampOpen={setNewCampOpen}/>}
+            {nav==="campaign-detail"&&<CampaignDetail campaign={camp} setNav={setNav} onUpdate={updateCampaign}/>}
+            {nav==="email"&&<EmailCadence/>}
+            {nav==="tickets"&&<Tickets/>}
+            {nav==="tasks"&&<Tasks/>}
+            {nav==="automation"&&<Automation/>}
+            {nav==="ai"&&<AIAssistant/>}
+            {nav==="performance"&&<Performance/>}
+          </div>
+        </div>
+      </div>
+
+      {newCampOpen&&(
+        <div className="overlay" onClick={()=>setNewCampOpen(false)}>
+          <div className="modal" style={{maxWidth:560}} onClick={e=>e.stopPropagation()}>
+            <div className="modal-hd">
+              <div className="modal-hd-body"><div className="modal-title">New Campaign</div></div>
+              <div className="modal-close" onClick={()=>setNewCampOpen(false)}>✕</div>
+            </div>
+            <div className="modal-bd">
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:9,marginBottom:9}}>
+                <div className="ffield" style={{gridColumn:"1/-1"}}><div className="ffield-lbl">Campaign Name *</div><input className="ffield-input" placeholder="e.g. Summer Guitar Sale" value={newCamp.name} onChange={e=>setNewCamp(p=>({...p,name:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">Start Date *</div><input className="ffield-input" placeholder="e.g. Apr 1" value={newCamp.start} onChange={e=>setNewCamp(p=>({...p,start:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">End Date *</div><input className="ffield-input" placeholder="e.g. Apr 10" value={newCamp.end} onChange={e=>setNewCamp(p=>({...p,end:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">Owner</div><input className="ffield-input" placeholder="e.g. Jamie R." value={newCamp.owner} onChange={e=>setNewCamp(p=>({...p,owner:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">Revenue Target</div><input className="ffield-input" placeholder="e.g. $500,000" value={newCamp.target} onChange={e=>setNewCamp(p=>({...p,target:e.target.value}))}/></div>
+                <div className="ffield"><div className="ffield-lbl">Status</div>
+                  <select className="ffield-select" value={newCamp.status} onChange={e=>setNewCamp(p=>({...p,status:e.target.value}))}>
+                    {["scheduled","live","review","draft"].map(s=><option key={s} value={s}>{statusLbl(s)}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Offer / Headline</div><input className="ffield-input" placeholder="e.g. Up to 40% off guitars" value={newCamp.offer} onChange={e=>setNewCamp(p=>({...p,offer:e.target.value}))}/></div>
+              <div className="ffield" style={{marginBottom:9}}><div className="ffield-lbl">Goal</div><textarea className="ffield-input" rows={2} placeholder="Campaign objective…" value={newCamp.goal} onChange={e=>setNewCamp(p=>({...p,goal:e.target.value}))}/></div>
+              <div className="ffield" style={{marginBottom:14}}><div className="ffield-lbl">Target Audience</div><input className="ffield-input" placeholder="e.g. Guitar players, beginners" value={newCamp.audience} onChange={e=>setNewCamp(p=>({...p,audience:e.target.value}))}/></div>
+              <div style={{marginBottom:16}}>
+                <div style={{fontSize:9,color:"var(--dim)",textTransform:"uppercase",letterSpacing:"1.2px",marginBottom:7,fontWeight:600}}>Campaign Color</div>
+                <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                  {COLORS_NC.map(col=><div key={col} onClick={()=>setNewCamp(p=>({...p,color:col}))} style={{width:24,height:24,borderRadius:5,background:col,cursor:"pointer",border:newCamp.color===col?"2px solid white":"2px solid transparent"}}/>)}
+                </div>
+              </div>
+              <div style={{display:"flex",gap:8}}>
+                <button className="btn btn-ghost btn-sm" onClick={()=>setNewCampOpen(false)}>Cancel</button>
+                <button className="btn btn-primary btn-sm" onClick={saveNewCamp} disabled={!newCamp.name||!newCamp.start||!newCamp.end}>Create Campaign →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(App, null));
+</script>
+</body>
+</html>
